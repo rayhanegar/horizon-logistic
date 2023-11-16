@@ -11,5 +11,6 @@ package horizonlogistic;
 public class TestClass {
     public static void main(String[] args){
         System.out.println("Ini Wayan, test");
+        System.out.println("Ini Egar, membalas test Wayan");
     }
 }
