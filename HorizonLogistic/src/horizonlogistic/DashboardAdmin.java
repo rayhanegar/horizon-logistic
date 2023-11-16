@@ -4,19 +4,39 @@
  */
 package horizonlogistic;
 
+import java.sql.*;
+import java.util.Arrays;
+import java.util.Scanner;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RAYHAN EGAR
  */
 public class DashboardAdmin extends javax.swing.JFrame {
-
+    
+    String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+                + "database=Horizon_Logistic;"
+                + "user=sa;"
+                + "password=basisdata;"
+                + "encrypt=false;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
+    
+    ResultSet resultSet = null;
+    Connection connection;
+    Statement statement;
+    PreparedStatement preparedStatement;
+    
     /**
      * Creates new form DashboardAdmin
      */
     public DashboardAdmin() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +64,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnSearch = new javax.swing.JButton();
         jspTable = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jlSectionDetail = new javax.swing.JLabel();
         jBtnRefresh = new javax.swing.JButton();
         jspDetail = new javax.swing.JScrollPane();
         jpDetail = new javax.swing.JPanel();
@@ -105,14 +125,29 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnShipment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnShipment.setText("Shipment");
         jBtnShipment.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnShipment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnShipmentActionPerformed(evt);
+            }
+        });
 
         jBtnEmployee.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnEmployee.setText("Employee");
         jBtnEmployee.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEmployeeActionPerformed(evt);
+            }
+        });
 
         jBtnClearance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnClearance.setText("Clearance");
         jBtnClearance.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnClearance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClearanceActionPerformed(evt);
+            }
+        });
 
         jBtnKendaraan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnKendaraan.setText("Kendaraan");
@@ -126,18 +161,38 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnDeliveryLeg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnDeliveryLeg.setText("Delivery Leg");
         jBtnDeliveryLeg.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnDeliveryLeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDeliveryLegActionPerformed(evt);
+            }
+        });
 
         jBtnDroppoint.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnDroppoint.setText("Drop Point");
         jBtnDroppoint.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnDroppoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDroppointActionPerformed(evt);
+            }
+        });
 
         jBtnPayment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnPayment.setText("Payment");
         jBtnPayment.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPaymentActionPerformed(evt);
+            }
+        });
 
         jBtnOperation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnOperation.setText("Operation");
         jBtnOperation.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOperationActionPerformed(evt);
+            }
+        });
 
         jBtnLogout.setBackground(new java.awt.Color(255, 0, 0));
         jBtnLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -234,10 +289,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         ));
         jspTable.setViewportView(jTable);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("-Detail-");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 32));
+        jlSectionDetail.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSectionDetail.setText("-Detail-");
+        jlSectionDetail.setPreferredSize(new java.awt.Dimension(100, 32));
 
         jBtnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jBtnRefresh.setText("Refresh");
@@ -397,7 +452,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jBtnSearch)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnRefresh)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -420,7 +475,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,6 +512,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCustomerActionPerformed
         // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM customer";
+        jlSectionTitle.setText("Customer");
+        jlSectionDetail.setText("Customer Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
     }//GEN-LAST:event_jBtnCustomerActionPerformed
 
     private void jtfKeywordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKeywordsActionPerformed
@@ -469,8 +529,143 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnKendaraanActionPerformed
         // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM kendaraan";
+        jlSectionTitle.setText("Kendaraan");
+        jlSectionDetail.setText("Kendaraan Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
     }//GEN-LAST:event_jBtnKendaraanActionPerformed
 
+    private void jBtnShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnShipmentActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM shipment";
+        jlSectionTitle.setText("Shipment");
+        jlSectionDetail.setText("Shipment Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnShipmentActionPerformed
+
+    private void jBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEmployeeActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM employee";
+        jlSectionTitle.setText("Employee");
+        jlSectionDetail.setText("Employee Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnEmployeeActionPerformed
+
+    private void jBtnClearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearanceActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM clearance";
+        jlSectionTitle.setText("Clearance");
+        jlSectionDetail.setText("Clearance Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnClearanceActionPerformed
+
+    private void jBtnDeliveryLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeliveryLegActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM delivery_leg";
+        jlSectionTitle.setText("Delivery Leg");
+        jlSectionDetail.setText("Deliv. Leg Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnDeliveryLegActionPerformed
+
+    private void jBtnDroppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDroppointActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM droppoint";
+        jlSectionTitle.setText("Drop point");
+        jlSectionDetail.setText("Drop point Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnDroppointActionPerformed
+
+    private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM payment";
+        jlSectionTitle.setText("Payment");
+        jlSectionDetail.setText("Payment Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnPaymentActionPerformed
+
+    private void jBtnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOperationActionPerformed
+        // TODO add your handling code here:
+        String sqlQuery = "SELECT * FROM operates";
+        jlSectionTitle.setText("Operation");
+        jlSectionDetail.setText("Operation Detail");
+        connectQuery(sqlQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnOperationActionPerformed
+
+    
+    private void connectQuery(String sqlQuery){
+        try {
+            connection = DriverManager.getConnection(connectionUrl);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sqlQuery);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void populateTable(JTable table, JScrollPane scrollPane){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        try {
+            
+            int rowCount = resultSet.getRow();
+            int colCount = resultSet.getMetaData().getColumnCount();
+            
+            // Add columns to the tableModel
+            for(int i = 1; i<= colCount; i++) {
+                tableModel.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+            
+            // Add detail button column
+            tableModel.addColumn("Detail");
+            
+            // Print data
+            while (resultSet.next()){
+                Object[] rowData = new Object[colCount + 1]; // +1 To add column button
+                for (int i = 1; i <= colCount; i++) {
+                    rowData[i - 1] = resultSet.getObject(i);
+                }
+                // Add button placeholder in the "Detail" column
+                rowData[colCount] = "Button";
+                tableModel.addRow(rowData);
+            }
+            
+            table.setModel(tableModel);
+            table.getColumnModel().getColumn(colCount).setCellRenderer(new ButtonRenderer());
+            scrollPane.setViewportView(table);
+            table.setPreferredScrollableViewportSize(table.getPreferredSize());
+            
+            table.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = table.rowAtPoint(evt.getPoint());
+                    
+                    if (col == colCount) {
+                        System.out.println("Button clicked on row " + row);
+                        
+                        // TODO add extractRowData() function here
+                        
+                        // TODO perform actions with the extracted data here
+                        
+                        // Set editable false
+                        
+                        
+                    }
+                }
+            });
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -522,7 +717,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnShipment;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable;
     private javax.swing.JButton jbEdit;
     private javax.swing.JLabel jlField1;
@@ -538,6 +732,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jlField7;
     private javax.swing.JLabel jlField8;
     private javax.swing.JLabel jlField9;
+    private javax.swing.JLabel jlSectionDetail;
     private javax.swing.JLabel jlSectionTitle;
     private javax.swing.JLabel jlSidebarTitle;
     private javax.swing.JPanel jpContent;
