@@ -46,7 +46,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlLogo = new javax.swing.JPanel();
+        jpSidebar = new javax.swing.JPanel();
         jlSidebarTitle = new javax.swing.JLabel();
         jBtnCustomer = new javax.swing.JButton();
         jBtnShipment = new javax.swing.JButton();
@@ -106,9 +106,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
-        jlLogo.setBackground(new java.awt.Color(255, 255, 255));
-        jlLogo.setFocusable(false);
-        jlLogo.setPreferredSize(new java.awt.Dimension(250, 600));
+        jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
+        jpSidebar.setFocusable(false);
+        jpSidebar.setPreferredSize(new java.awt.Dimension(250, 600));
 
         jlSidebarTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,25 +202,24 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnLogout.setPreferredSize(new java.awt.Dimension(150, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/horizonlogistic/Horizon Logistic Logo Resize.png"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        javax.swing.GroupLayout jlLogoLayout = new javax.swing.GroupLayout(jlLogo);
-        jlLogo.setLayout(jlLogoLayout);
-        jlLogoLayout.setHorizontalGroup(
-            jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jlLogoLayout.createSequentialGroup()
-                .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jlLogoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpSidebarLayout = new javax.swing.GroupLayout(jpSidebar);
+        jpSidebar.setLayout(jpSidebarLayout);
+        jpSidebarLayout.setHorizontalGroup(
+            jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSidebarLayout.createSequentialGroup()
+                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpSidebarLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jlLogoLayout.createSequentialGroup()
-                        .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jlLogoLayout.createSequentialGroup()
+                    .addGroup(jpSidebarLayout.createSequentialGroup()
+                        .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpSidebarLayout.createSequentialGroup()
                                 .addGap(73, 73, 73)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jlLogoLayout.createSequentialGroup()
+                                .addComponent(jLabel1))
+                            .addGroup(jpSidebarLayout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,13 +233,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGap(0, 47, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jlLogoLayout.setVerticalGroup(
-            jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jlLogoLayout.createSequentialGroup()
+        jpSidebarLayout.setVerticalGroup(
+            jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSidebarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jlSidebarTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -508,14 +507,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jlLogo, 631, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpSidebar, 631, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
         );
@@ -746,12 +745,12 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jlField7;
     private javax.swing.JLabel jlField8;
     private javax.swing.JLabel jlField9;
-    private javax.swing.JPanel jlLogo;
     private javax.swing.JLabel jlSectionDetail;
     private javax.swing.JLabel jlSectionTitle;
     private javax.swing.JLabel jlSidebarTitle;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpDetail;
+    private javax.swing.JPanel jpSidebar;
     private javax.swing.JScrollPane jspDetail;
     private javax.swing.JScrollPane jspTable;
     private javax.swing.JTextField jtfField1;
