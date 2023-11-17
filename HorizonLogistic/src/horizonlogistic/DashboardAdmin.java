@@ -46,7 +46,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpSidebar = new javax.swing.JPanel();
+        jlLogo = new javax.swing.JPanel();
         jlSidebarTitle = new javax.swing.JLabel();
         jBtnCustomer = new javax.swing.JButton();
         jBtnShipment = new javax.swing.JButton();
@@ -58,6 +58,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnPayment = new javax.swing.JButton();
         jBtnOperation = new javax.swing.JButton();
         jBtnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jpContent = new javax.swing.JPanel();
         jlSectionTitle = new javax.swing.JLabel();
         jtfKeywords = new javax.swing.JTextField();
@@ -105,9 +106,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
-        jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
-        jpSidebar.setFocusable(false);
-        jpSidebar.setPreferredSize(new java.awt.Dimension(250, 600));
+        jlLogo.setBackground(new java.awt.Color(255, 255, 255));
+        jlLogo.setFocusable(false);
+        jlLogo.setPreferredSize(new java.awt.Dimension(250, 600));
 
         jlSidebarTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,35 +201,47 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnLogout.setText("Log out");
         jBtnLogout.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        javax.swing.GroupLayout jpSidebarLayout = new javax.swing.GroupLayout(jpSidebar);
-        jpSidebar.setLayout(jpSidebarLayout);
-        jpSidebarLayout.setHorizontalGroup(
-            jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpSidebarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/horizonlogistic/Horizon Logistic Logo Resize.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        javax.swing.GroupLayout jlLogoLayout = new javax.swing.GroupLayout(jlLogo);
+        jlLogo.setLayout(jlLogoLayout);
+        jlLogoLayout.setHorizontalGroup(
+            jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jlLogoLayout.createSequentialGroup()
+                .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jlLogoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jlLogoLayout.createSequentialGroup()
+                        .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jlLogoLayout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jlLogoLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 47, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jpSidebarLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
         );
-        jpSidebarLayout.setVerticalGroup(
-            jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpSidebarLayout.createSequentialGroup()
+        jlLogoLayout.setVerticalGroup(
+            jlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jlLogoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jlSidebarTitle)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +261,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         jpContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -256,7 +269,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jlSectionTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jlSectionTitle.setText("-Relation-");
-        jlSectionTitle.setPreferredSize(new java.awt.Dimension(100, 32));
+        jlSectionTitle.setPreferredSize(new java.awt.Dimension(190, 32));
 
         jtfKeywords.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtfKeywords.addActionListener(new java.awt.event.ActionListener() {
@@ -290,9 +303,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jspTable.setViewportView(jTable);
 
         jlSectionDetail.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlSectionDetail.setText("-Detail-");
-        jlSectionDetail.setPreferredSize(new java.awt.Dimension(100, 32));
+        jlSectionDetail.setPreferredSize(new java.awt.Dimension(190, 32));
 
         jBtnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jBtnRefresh.setText("Refresh");
@@ -445,14 +458,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpContentLayout.createSequentialGroup()
-                            .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnSearch)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnRefresh)))
-                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -460,7 +472,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jBtnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnDelete))))
+                            .addComponent(jBtnDelete)))
+                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
@@ -495,14 +508,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpSidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlLogo, 631, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
         );
@@ -717,6 +730,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnShipment;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable;
     private javax.swing.JButton jbEdit;
     private javax.swing.JLabel jlField1;
@@ -732,12 +746,12 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jlField7;
     private javax.swing.JLabel jlField8;
     private javax.swing.JLabel jlField9;
+    private javax.swing.JPanel jlLogo;
     private javax.swing.JLabel jlSectionDetail;
     private javax.swing.JLabel jlSectionTitle;
     private javax.swing.JLabel jlSidebarTitle;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpDetail;
-    private javax.swing.JPanel jpSidebar;
     private javax.swing.JScrollPane jspDetail;
     private javax.swing.JScrollPane jspTable;
     private javax.swing.JTextField jtfField1;
