@@ -1,5 +1,6 @@
 package horizonlogistic;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -197,13 +198,51 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginButtonActionPerformed
-        DashboardAdmin DA = new DashboardAdmin();
-        DA.setVisible(true);
-        this.dispose();
+        String emailUser = "admin@gmail.com";
+        String password = "admin123";
+        
+        if(emailTxt.getText().equals(emailUser) && passwordTxt.getText().equals(password)){
+            DashboardAdmin DA = new DashboardAdmin();
+            DA.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry, email or password is wrong!", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_adminLoginButtonActionPerformed
 
     private void customerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerLoginButtonActionPerformed
+        String emailCust = emailTxt.getText();
+        String passwordCust = passwordTxt.getText();
+         
+        String connectionUrl =
+                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+                + "database=Horizon_Logistic;"
+                + "user=sa;"
+                + "password=sunshine141muhuf;"
+                + "encrypt=false;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
+        
+        try {
+            Connection connection = DriverManager.getConnection(connectionUrl);
 
+            String sql = "SELECT * FROM customer WHERE email_cust = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            statement.setString(1, emailCust);
+            ResultSet result = statement.executeQuery();
+            
+            if (result.next()) {
+                DashboardAdmin DA = new DashboardAdmin();
+                DA.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Sorry, email or password is wrong!", "Login Error", JOptionPane.ERROR_MESSAGE);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_customerLoginButtonActionPerformed
 
     private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
@@ -233,10 +272,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=sunshine141muhuf;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
