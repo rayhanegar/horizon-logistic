@@ -58,7 +58,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnPayment = new javax.swing.JButton();
         jBtnOperation = new javax.swing.JButton();
         jBtnLogout = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jpContent = new javax.swing.JPanel();
         jlSectionTitle = new javax.swing.JLabel();
         jtfKeywords = new javax.swing.JTextField();
@@ -103,7 +102,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -200,38 +198,34 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnLogout.setForeground(new java.awt.Color(255, 255, 255));
         jBtnLogout.setText("Log out");
         jBtnLogout.setPreferredSize(new java.awt.Dimension(150, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/horizonlogistic/Horizon Logistic Logo Resize.png"))); // NOI18N
+        jBtnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpSidebarLayout = new javax.swing.GroupLayout(jpSidebar);
         jpSidebar.setLayout(jpSidebarLayout);
         jpSidebarLayout.setHorizontalGroup(
             jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSidebarLayout.createSequentialGroup()
-                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpSidebarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpSidebarLayout.createSequentialGroup()
-                        .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpSidebarLayout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel1))
-                            .addGroup(jpSidebarLayout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 47, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jpSidebarLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jpSidebarLayout.setVerticalGroup(
             jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,8 +233,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jlSidebarTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +252,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jpContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -268,7 +260,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jlSectionTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jlSectionTitle.setText("-Relation-");
-        jlSectionTitle.setPreferredSize(new java.awt.Dimension(190, 32));
 
         jtfKeywords.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtfKeywords.addActionListener(new java.awt.event.ActionListener() {
@@ -302,15 +293,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jspTable.setViewportView(jTable);
 
         jlSectionDetail.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlSectionDetail.setText("-Detail-");
-        jlSectionDetail.setPreferredSize(new java.awt.Dimension(190, 32));
+        jlSectionDetail.setPreferredSize(new java.awt.Dimension(100, 32));
 
         jBtnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jBtnRefresh.setText("Refresh");
 
         jpDetail.setBackground(new java.awt.Color(255, 255, 255));
         jpDetail.setPreferredSize(new java.awt.Dimension(450, 500));
+
+        jtfField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfField1ActionPerformed(evt);
+            }
+        });
 
         jlField1.setText("field-1");
 
@@ -457,13 +454,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpContentLayout.createSequentialGroup()
-                            .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlSectionTitle)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnSearch)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnRefresh)))
+                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -471,8 +469,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jBtnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnDelete)))
-                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtnDelete))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
@@ -514,7 +511,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpSidebar, 631, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpSidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
         );
@@ -610,6 +607,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
     }//GEN-LAST:event_jBtnOperationActionPerformed
+
+    private void jBtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogoutActionPerformed
+        LoginForm LF = new LoginForm();
+        LF.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnLogoutActionPerformed
+
+    private void jtfField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfField1ActionPerformed
 
     
     private void connectQuery(String sqlQuery){
@@ -729,7 +736,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnShipment;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable;
     private javax.swing.JButton jbEdit;
     private javax.swing.JLabel jlField1;
