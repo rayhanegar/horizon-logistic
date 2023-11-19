@@ -4,11 +4,16 @@
  */
 package horizonlogistic;
 
+import java.awt.Component;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,12 +34,17 @@ public class DashboardAdmin extends javax.swing.JFrame {
     Connection connection;
     Statement statement;
     PreparedStatement preparedStatement;
+    Map<String, JTextField> jtfMap;
+    Map<String, JLabel> jlMap;
     
     /**
      * Creates new form DashboardAdmin
      */
     public DashboardAdmin() {
         initComponents();
+        initComponentsMap();
+        setNimbusLook();
+        setLocationRelativeTo(null);
     }
     
     /**
@@ -518,7 +528,59 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void initComponentsMap(){
+        jtfMap = new HashMap<>();
+        jlMap = new HashMap<>();
+        
+        jtfMap.put("jtfField1", jtfField1);
+        jtfMap.put("jtfField2", jtfField2);
+        jtfMap.put("jtfField3", jtfField3);
+        jtfMap.put("jtfField4", jtfField4);
+        jtfMap.put("jtfField5", jtfField5);
+        jtfMap.put("jtfField6", jtfField6);
+        jtfMap.put("jtfField7", jtfField7);
+        jtfMap.put("jtfField8", jtfField8);
+        jtfMap.put("jtfField9", jtfField9);
+        jtfMap.put("jtfField10", jtfField10);
+        jtfMap.put("jtfField11", jtfField11);
+        jtfMap.put("jtfField12", jtfField12);
+        jtfMap.put("jtfField13", jtfField13);
+        
+        jlMap.put("jlField1",jlField1);
+        jlMap.put("jlField2",jlField2);
+        jlMap.put("jlField3",jlField3);
+        jlMap.put("jlField4",jlField4);
+        jlMap.put("jlField5",jlField5);
+        jlMap.put("jlField6",jlField6);
+        jlMap.put("jlField7",jlField7);
+        jlMap.put("jlField8",jlField8);
+        jlMap.put("jlField9",jlField9);
+        jlMap.put("jlField10",jlField10);
+        jlMap.put("jlField11",jlField11);
+        jlMap.put("jlField12",jlField12);
+        jlMap.put("jlField13",jlField13);
+    }
+    
+    private void setNimbusLook(){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+    
     private void jBtnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCustomerActionPerformed
         // TODO add your handling code here:
         String sqlQuery = "SELECT * FROM customer";
@@ -629,6 +691,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
         }
     }
     
+    private String[] extractData(JTable table, int row, int col){
+        int colCount = table.getColumnCount();
+        String[] extracted = new String[colCount-1]; // -1 to exclude button
+        try {
+            for (int i = 0; i<colCount-1; i++){
+            extracted[i] = table.getValueAt(row, i).toString();
+            System.out.println(extracted[i]);
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return extracted;
+    }  
+    
     private void populateTable(JTable table, JScrollPane scrollPane){
         
         DefaultTableModel tableModel = new DefaultTableModel();
@@ -669,17 +745,25 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     
                     if (col == colCount) {
                         System.out.println("Button clicked on row " + row);
+                        String[] extracted = extractData(table, row, col);
                         
-                        // TODO add extractRowData() function here
-                        
-                        // TODO perform actions with the extracted data here
-                        
-                        // Set editable false
-                        
-                        
+                        for (int i = 0; i < extracted.length; i++){
+                            String fieldLabel = table.getColumnName(i);
+                            String fieldText = extracted[i];
+                            String labelAccessor = "jlField" + Integer.toString(i+1);
+                            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+                            
+                            jlMap.get(labelAccessor).setText(fieldLabel);
+                            jlMap.get(labelAccessor).setEnabled(false);
+                            jtfMap.get(textFieldAccessor).setText(fieldText);
+                            jtfMap.get(textFieldAccessor).setEnabled(false);
+                            
+                        }
                     }
                 }
             });
+            
+            table.setEnabled(false);
             
         } catch (SQLException e) {
             e.printStackTrace();

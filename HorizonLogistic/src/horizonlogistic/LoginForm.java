@@ -12,6 +12,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +40,6 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         adminLoginButton.setBackground(new java.awt.Color(255, 255, 0));
@@ -215,7 +215,7 @@ public class LoginForm extends javax.swing.JFrame {
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+                "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
                 + "password=sunshine141muhuf;"
