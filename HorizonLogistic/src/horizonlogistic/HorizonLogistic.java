@@ -15,6 +15,8 @@ public class HorizonLogistic {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DashboardAdmin da = new DashboardAdmin();
+        da.setVisible(true);
     }
     
 }

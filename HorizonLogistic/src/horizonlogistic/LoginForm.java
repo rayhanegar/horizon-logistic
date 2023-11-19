@@ -24,57 +24,30 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        adminLoginButton = new javax.swing.JButton();
-        jlHeader3 = new javax.swing.JLabel();
-        customerLoginButton = new javax.swing.JButton();
-        jlHeader8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        logoHL = new javax.swing.JLabel();
         jlHeader1 = new javax.swing.JLabel();
         jlHeader2 = new javax.swing.JLabel();
+        jlHeader3 = new javax.swing.JLabel();
         jlHeader4 = new javax.swing.JLabel();
-        logoHL = new javax.swing.JLabel();
+        jlEmail = new javax.swing.JLabel();
         emailTxt = new javax.swing.JTextField();
+        jlPassword = new javax.swing.JLabel();
         passwordTxt = new javax.swing.JPasswordField();
-        jlHeader9 = new javax.swing.JLabel();
-        jlHeader10 = new javax.swing.JLabel();
+        jlDesc = new javax.swing.JLabel();
+        customerLoginButton = new javax.swing.JButton();
+        adminLoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
-        adminLoginButton.setBackground(new java.awt.Color(255, 255, 0));
-        adminLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        adminLoginButton.setText("Log in as Admin");
-        adminLoginButton.setFocusable(false);
-        adminLoginButton.setPreferredSize(new java.awt.Dimension(250, 30));
-        adminLoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminLoginButtonActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        jlHeader3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jlHeader3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlHeader3.setText("LOGISTIC");
-        jlHeader3.setPreferredSize(new java.awt.Dimension(250, 100));
-        jlHeader3.setRequestFocusEnabled(false);
-
-        customerLoginButton.setBackground(new java.awt.Color(0, 255, 0));
-        customerLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        customerLoginButton.setText("Log in as Customer");
-        customerLoginButton.setFocusable(false);
-        customerLoginButton.setPreferredSize(new java.awt.Dimension(250, 30));
-        customerLoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerLoginButtonActionPerformed(evt);
-            }
-        });
-
-        jlHeader8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlHeader8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jlHeader8.setText("Password");
-        jlHeader8.setPreferredSize(new java.awt.Dimension(250, 100));
-        jlHeader8.setRequestFocusEnabled(false);
+        logoHL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Horizon Logistic Logo (transparant).png"))); // NOI18N
 
         jlHeader1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jlHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,14 +61,24 @@ public class LoginForm extends javax.swing.JFrame {
         jlHeader2.setPreferredSize(new java.awt.Dimension(250, 100));
         jlHeader2.setRequestFocusEnabled(false);
 
+        jlHeader3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jlHeader3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlHeader3.setText("LOGISTIC");
+        jlHeader3.setPreferredSize(new java.awt.Dimension(250, 100));
+        jlHeader3.setRequestFocusEnabled(false);
+
         jlHeader4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jlHeader4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlHeader4.setText("\"Delivering Hope, Shipping Happiness\"");
         jlHeader4.setPreferredSize(new java.awt.Dimension(250, 100));
         jlHeader4.setRequestFocusEnabled(false);
 
-        logoHL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Horizon Logistic Logo (transparant).png"))); // NOI18N
-        logoHL.setText("jLabel1");
+        jlEmail.setBackground(new java.awt.Color(255, 255, 255));
+        jlEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlEmail.setText("Email");
+        jlEmail.setPreferredSize(new java.awt.Dimension(250, 100));
+        jlEmail.setRequestFocusEnabled(false);
 
         emailTxt.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         emailTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -105,6 +88,13 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        jlPassword.setBackground(new java.awt.Color(255, 255, 255));
+        jlPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlPassword.setText("Password");
+        jlPassword.setPreferredSize(new java.awt.Dimension(250, 100));
+        jlPassword.setRequestFocusEnabled(false);
+
         passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         passwordTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         passwordTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -113,85 +103,112 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        jlHeader9.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jlHeader9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlHeader9.setText("What would you like to log in as?");
-        jlHeader9.setPreferredSize(new java.awt.Dimension(250, 100));
-        jlHeader9.setRequestFocusEnabled(false);
+        jlDesc.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jlDesc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlDesc.setText("What would you like to log in as?");
+        jlDesc.setPreferredSize(new java.awt.Dimension(250, 100));
+        jlDesc.setRequestFocusEnabled(false);
 
-        jlHeader10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlHeader10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jlHeader10.setText("Email");
-        jlHeader10.setPreferredSize(new java.awt.Dimension(250, 100));
-        jlHeader10.setRequestFocusEnabled(false);
+        customerLoginButton.setBackground(new java.awt.Color(0, 255, 0));
+        customerLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        customerLoginButton.setText("Log in as Customer");
+        customerLoginButton.setFocusable(false);
+        customerLoginButton.setPreferredSize(new java.awt.Dimension(250, 30));
+        customerLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerLoginButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(590, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlHeader2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(160, 160, 160))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(logoHL, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jlHeader4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(adminLoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(customerLoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlHeader3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlHeader9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jlHeader8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlHeader10, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(passwordTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                    .addComponent(emailTxt, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(160, 160, 160))))
+        adminLoginButton.setBackground(new java.awt.Color(255, 255, 0));
+        adminLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adminLoginButton.setText("Log in as Admin");
+        adminLoginButton.setFocusable(false);
+        adminLoginButton.setPreferredSize(new java.awt.Dimension(250, 30));
+        adminLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminLoginButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(logoHL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jlHeader2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jlHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                                    .addComponent(jlHeader4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlHeader3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(90, 90, 90)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jlDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jlPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(adminLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customerLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(142, 142, 142))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoHL, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlHeader2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlHeader3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jlHeader4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlHeader10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlHeader8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(jlHeader9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(customerLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adminLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(181, 181, 181))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(logoHL, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108))))
+                        .addComponent(adminLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -268,6 +285,7 @@ public class LoginForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginForm().setVisible(true);
+                new DashboardAdmin().setVisible(false);
             }
         });
         
@@ -295,13 +313,14 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton adminLoginButton;
     private javax.swing.JButton customerLoginButton;
     private javax.swing.JTextField emailTxt;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jlDesc;
+    private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlHeader1;
-    private javax.swing.JLabel jlHeader10;
     private javax.swing.JLabel jlHeader2;
     private javax.swing.JLabel jlHeader3;
     private javax.swing.JLabel jlHeader4;
-    private javax.swing.JLabel jlHeader8;
-    private javax.swing.JLabel jlHeader9;
+    private javax.swing.JLabel jlPassword;
     private javax.swing.JLabel logoHL;
     private javax.swing.JPasswordField passwordTxt;
     // End of variables declaration//GEN-END:variables

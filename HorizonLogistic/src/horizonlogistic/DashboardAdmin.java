@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
                 + "password=basisdata;"
@@ -30,12 +31,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
     
-    ResultSet resultSet = null;
-    Connection connection;
-    Statement statement;
-    PreparedStatement preparedStatement;
-    Map<String, JTextField> jtfMap;
-    Map<String, JLabel> jlMap;
+    private ResultSet resultSet = null;
+    private Connection connection;
+    private Statement statement;
+    private PreparedStatement preparedStatement;
+    private Map<String, JTextField> jtfMap;
+    private Map<String, JLabel> jlMap;
+    private String section;
+    private int fieldCount;
     
     /**
      * Creates new form DashboardAdmin
@@ -43,8 +46,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     public DashboardAdmin() {
         initComponents();
         initComponentsMap();
-        setNimbusLook();
         setLocationRelativeTo(null);
+        resetField();
     }
     
     /**
@@ -108,10 +111,12 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnSave = new javax.swing.JButton();
         jBtnAdd = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
+        jBtnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
+        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,7 +125,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jlSidebarTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSidebarTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/horizonlogistic/Horizon Logistic Logo Resize.png"))); // NOI18N
         jlSidebarTitle.setText("Horizon Logistic");
+        jlSidebarTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlSidebarTitle.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jBtnCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnCustomer.setText("Customer");
@@ -223,7 +231,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jlSidebarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jpSidebarLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(47, 47, 47)
                 .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +243,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jpSidebarLayout.setVerticalGroup(
             jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,9 +268,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(101, 101, 101))
         );
 
         jpContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,6 +278,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jlSectionTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jlSectionTitle.setText("-Relation-");
+        jlSectionTitle.setPreferredSize(new java.awt.Dimension(320, 32));
 
         jtfKeywords.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtfKeywords.addActionListener(new java.awt.event.ActionListener() {
@@ -303,12 +312,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jspTable.setViewportView(jTable);
 
         jlSectionDetail.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jlSectionDetail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlSectionDetail.setText("-Detail-");
         jlSectionDetail.setPreferredSize(new java.awt.Dimension(100, 32));
 
         jBtnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jBtnRefresh.setText("Refresh");
+        jBtnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRefreshActionPerformed(evt);
+            }
+        });
 
         jpDetail.setBackground(new java.awt.Color(255, 255, 255));
         jpDetail.setPreferredSize(new java.awt.Dimension(450, 500));
@@ -447,12 +460,46 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jspDetail.setViewportView(jpDetail);
 
         jbEdit.setText("Edit");
+        jbEdit.setEnabled(false);
+        jbEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditActionPerformed(evt);
+            }
+        });
 
         jBtnSave.setText("Save");
+        jBtnSave.setEnabled(false);
+        jBtnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSaveActionPerformed(evt);
+            }
+        });
 
+        jBtnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jBtnAdd.setText("New");
+        jBtnAdd.setEnabled(false);
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
 
         jBtnDelete.setText("Delete");
+        jBtnDelete.setEnabled(false);
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDeleteActionPerformed(evt);
+            }
+        });
+
+        jBtnRegister.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jBtnRegister.setText("Register");
+        jBtnRegister.setEnabled(false);
+        jBtnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
         jpContent.setLayout(jpContentLayout);
@@ -464,22 +511,24 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpContentLayout.createSequentialGroup()
-                            .addComponent(jlSectionTitle)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlSectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnSearch)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnRefresh)))
-                    .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpContentLayout.createSequentialGroup()
-                        .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jspDetail)
+                            .addComponent(jlSectionDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBtnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnDelete))))
+                            .addComponent(jBtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
@@ -490,14 +539,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jBtnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtfKeywords)
                     .addComponent(jBtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addComponent(jbEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -505,8 +553,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnAdd)))
-                .addGap(102, 102, 102))
+                        .addComponent(jBtnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnRegister))
+                    .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(169, 169, 169))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -520,10 +571,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpSidebar, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpSidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpContent, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
         );
 
         pack();
@@ -562,27 +613,25 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlMap.put("jlField13",jlField13);
     }
     
-    private void setNimbusLook(){
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void resetField(){
+        for (Map.Entry<String, JTextField> entry : jtfMap.entrySet()) {
+            JTextField textField = entry.getValue();
+            // If it's a JTextField, you can set properties like editable
+            textField.setText("");
+            textField.setEditable(false);
         }
+        for (Map.Entry<String, JLabel> entry : jlMap.entrySet()){
+            JLabel fieldLabel = entry.getValue();
+            fieldLabel.setText("");
+        }
+        jbEdit.setEnabled(false);
+        jBtnSave.setEnabled(false);
+        jBtnDelete.setEnabled(false);
     }
-    
     private void jBtnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCustomerActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "customer";
         String sqlQuery = "SELECT * FROM customer";
         jlSectionTitle.setText("Customer");
         jlSectionDetail.setText("Customer Detail");
@@ -600,6 +649,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnKendaraanActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "kendaraan";
         String sqlQuery = "SELECT * FROM kendaraan";
         jlSectionTitle.setText("Kendaraan");
         jlSectionDetail.setText("Kendaraan Detail");
@@ -609,6 +660,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnShipmentActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "shipment";
         String sqlQuery = "SELECT * FROM shipment";
         jlSectionTitle.setText("Shipment");
         jlSectionDetail.setText("Shipment Detail");
@@ -618,6 +671,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEmployeeActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "employee";
         String sqlQuery = "SELECT * FROM employee";
         jlSectionTitle.setText("Employee");
         jlSectionDetail.setText("Employee Detail");
@@ -627,6 +682,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnClearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearanceActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "clearance";
         String sqlQuery = "SELECT * FROM clearance";
         jlSectionTitle.setText("Clearance");
         jlSectionDetail.setText("Clearance Detail");
@@ -636,6 +693,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnDeliveryLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeliveryLegActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "delivery_leg";
         String sqlQuery = "SELECT * FROM delivery_leg";
         jlSectionTitle.setText("Delivery Leg");
         jlSectionDetail.setText("Deliv. Leg Detail");
@@ -645,6 +704,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnDroppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDroppointActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "droppoint";
         String sqlQuery = "SELECT * FROM droppoint";
         jlSectionTitle.setText("Drop point");
         jlSectionDetail.setText("Drop point Detail");
@@ -654,6 +715,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "payment";
         String sqlQuery = "SELECT * FROM payment";
         jlSectionTitle.setText("Payment");
         jlSectionDetail.setText("Payment Detail");
@@ -663,6 +726,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void jBtnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOperationActionPerformed
         // TODO add your handling code here:
+        resetField();
+        section = "operates";
         String sqlQuery = "SELECT * FROM operates";
         jlSectionTitle.setText("Operation");
         jlSectionDetail.setText("Operation Detail");
@@ -680,7 +745,321 @@ public class DashboardAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfField1ActionPerformed
 
+    private void jbEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditActionPerformed
+        // TODO add your handling code here:
+        for (int i = 1; i < fieldCount; i++){
+            String labelAccessor = "jlField" + Integer.toString(i+1);
+            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+            jtfMap.get(textFieldAccessor).setEditable(true);
+        }
+        jBtnSave.setEnabled(true);
+    }//GEN-LAST:event_jbEditActionPerformed
+
+    private void jBtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveActionPerformed
+        // TODO add your handling code here:
+        PreparedStatement updateStatement;
+        String preparedString = "UPDATE " + section +" SET ";
+        for (int i = 0; i < fieldCount; i++) {
+            String labelAccessor = "jlField" + Integer.toString(i+1);
+            String labelText = jlMap.get(labelAccessor).getText();
+            if (i == fieldCount-1){
+                preparedString += labelText + " = ?";
+                continue;
+            }
+            preparedString += labelText + " = ?, ";
+        }
+        preparedString += "WHERE " + jlField1.getText() + " = ?";
+        System.out.println(preparedString);
+        
+        try {
+            updateStatement = connection.prepareStatement(preparedString);
+            switch (section) {
+                case "customer":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setInt(4, Integer.parseInt(jtfField4.getText()));
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setString(6, jtfField6.getText());
+                    updateStatement.setString(7, jtfField7.getText());
+                    updateStatement.setString(8, jtfField8.getText());
+                    updateStatement.setString(9, jtfField9.getText());
+                    updateStatement.setString(10, jtfField10.getText());
+                    updateStatement.setString(11, jtfField1.getText());
+                    break;
+                case "shipment":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setFloat(6, Float.parseFloat(jtfField6.getText()));
+                    updateStatement.setString(7, jtfField7.getText());
+                    updateStatement.setFloat(8, Float.parseFloat(jtfField8.getText()));
+                    updateStatement.setString(9, jtfField9.getText());
+                    updateStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
+                    updateStatement.setString(11, jtfField11.getText());
+                    updateStatement.setString(12, jtfField12.getText());
+                    updateStatement.setString(13, jtfField13.getText());
+                    updateStatement.setString(14, jtfField1.getText());
+                    break;
+                case "employee":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setString(6, jtfField6.getText());
+                    updateStatement.setString(7, jtfField7.getText());
+                    updateStatement.setString(8, jtfField8.getText());
+                    updateStatement.setString(9, jtfField9.getText());
+                    updateStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
+                    updateStatement.setString(11, jtfField11.getText());
+                    updateStatement.setString(12, jtfField12.getText());
+                    updateStatement.setString(13, jtfField1.getText());
+                    break;
+                case "clearance":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField1.getText());
+                    break;
+                case "kendaraan":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setInt(6, Integer.parseInt(jtfField6.getText()));
+                    updateStatement.setString(7, jtfField1.getText());
+                    break;
+                case "delivery_leg":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField1.getText());
+                    break;
+                case "droppoint":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField3.getText());
+                    updateStatement.setString(4, jtfField4.getText());
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setString(6, jtfField6.getText());
+                    updateStatement.setString(7, jtfField7.getText());
+                    break;
+                case "payment":     
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
+                    updateStatement.setFloat(3, Float.parseFloat(jtfField3.getText()));
+                    updateStatement.setFloat(4, Float.parseFloat(jtfField4.getText()));
+                    updateStatement.setString(5, jtfField5.getText());
+                    updateStatement.setString(6, jtfField1.getText());
+                    break;
+                case "operates":
+                    updateStatement.setString(1, jtfField1.getText());
+                    updateStatement.setString(2, jtfField2.getText());
+                    updateStatement.setString(3, jtfField1.getText());
+                    break;
+            }
+            updateStatement.executeUpdate();
+            System.out.println("Successfully save edit.");
+            for (int i = 1; i < fieldCount; i++){
+                String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+                jtfMap.get(textFieldAccessor).setEditable(false);
+            }
+            jBtnSave.setEnabled(false);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jBtnSaveActionPerformed
+
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+        // TODO add your handling code here:
+        try {
+            String preparedString = "DELETE FROM " + section + " WHERE " + jlField1.getText() + " = ?";
+            PreparedStatement dropStatement = connection.prepareStatement(preparedString);
+            dropStatement.setString(1, jtfField1.getText());
+            
+            int confirmation = JOptionPane.showConfirmDialog(
+                this, 
+                "Are you sure you want to delete?", 
+                "Delete Confirmation", 
+                JOptionPane.YES_NO_OPTION
+            );
+            
+            if(confirmation == JOptionPane.YES_OPTION){
+                dropStatement.execute();
+                System.out.println("Successfully deleted from "+ section + " ID no: " + jtfField1.getText());
+                resetField();
+            } else {
+                System.out.println("Delete aborted.");
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
+
+    private void jBtnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRefreshActionPerformed
+        // TODO add your handling code here:
+        String refreshQuery = "SELECT * FROM " + section;
+        connectQuery(refreshQuery);
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnRefreshActionPerformed
+
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
+        // TODO add your handling code here:
+        resetField();
+        for (int i = 0; i < fieldCount; i++){
+            String fieldLabel = jTable.getColumnName(i);
+            String labelAccessor = "jlField" + Integer.toString(i+1);
+            jlMap.get(labelAccessor).setText(fieldLabel);
+            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+            jtfMap.get(textFieldAccessor).setEditable(true);
+        }
+        jBtnRegister.setEnabled(true);
+    }//GEN-LAST:event_jBtnAddActionPerformed
+
     
+    private void jBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRegisterActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (checkEmpty()) {
+                JOptionPane.showMessageDialog(this, 
+                        "Please fill every active field.", 
+                        "Empty Field!", 
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            String preparedString = "INSERT INTO " + section + " VALUES (";
+            for (int i = 0; i < fieldCount; i++) {
+                
+                if (i == fieldCount-1){
+                    preparedString += "?)";
+                }
+                else {
+                    preparedString += "?, ";
+                }
+            }
+            
+            PreparedStatement insertStatement = connection.prepareStatement(preparedString);
+            switch (section) {
+                case "customer":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setInt(4, Integer.parseInt(jtfField4.getText()));
+                    insertStatement.setString(5, jtfField5.getText());
+                    insertStatement.setString(6, jtfField6.getText());
+                    insertStatement.setString(7, jtfField7.getText());
+                    insertStatement.setString(8, jtfField8.getText());
+                    insertStatement.setString(9, jtfField9.getText());
+                    insertStatement.setString(10, jtfField10.getText());
+                    break;
+                case "shipment":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    insertStatement.setString(5, jtfField5.getText());
+                    insertStatement.setFloat(6, Float.parseFloat(jtfField6.getText()));
+                    insertStatement.setString(7, jtfField7.getText());
+                    insertStatement.setFloat(8, Float.parseFloat(jtfField8.getText()));
+                    insertStatement.setString(9, jtfField9.getText());
+                    insertStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
+                    insertStatement.setString(11, jtfField11.getText());
+                    insertStatement.setString(12, jtfField12.getText());
+                    insertStatement.setString(13, jtfField13.getText());
+                    break;
+                case "employee":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    insertStatement.setString(5, jtfField5.getText());
+                    insertStatement.setString(6, jtfField6.getText());
+                    insertStatement.setString(7, jtfField7.getText());
+                    insertStatement.setString(8, jtfField8.getText());
+                    insertStatement.setString(9, jtfField9.getText());
+                    insertStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
+                    insertStatement.setString(11, jtfField11.getText());
+                    insertStatement.setString(12, jtfField12.getText());
+                    break;
+                case "clearance":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    break;
+                case "kendaraan":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    insertStatement.setString(5, jtfField5.getText());
+                    insertStatement.setInt(6, Integer.parseInt(jtfField6.getText()));
+                    break;
+                case "delivery_leg":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    insertStatement.setString(5, jtfField1.getText());
+                    break;
+                case "droppoint":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    insertStatement.setString(3, jtfField3.getText());
+                    insertStatement.setString(4, jtfField4.getText());
+                    insertStatement.setString(5, jtfField5.getText());
+                    insertStatement.setString(6, jtfField6.getText());
+                    insertStatement.setString(7, jtfField7.getText());
+                    break;
+                case "payment":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
+                    insertStatement.setFloat(3, Float.parseFloat(jtfField3.getText()));
+                    insertStatement.setFloat(4, Float.parseFloat(jtfField4.getText()));
+                    insertStatement.setString(5, jtfField5.getText());
+                    break;
+                case "operates":
+                    insertStatement.setString(1, jtfField1.getText());
+                    insertStatement.setString(2, jtfField2.getText());
+                    break;
+            }
+            
+            int confirmation = JOptionPane.showConfirmDialog(
+                this, 
+                "Are you sure you want to register new entry?", 
+                "Register Confirmation", 
+                JOptionPane.YES_NO_OPTION
+            );
+            
+            if(confirmation == JOptionPane.YES_OPTION){
+                insertStatement.execute();
+                System.out.println("Successfully register new entry to "+ section + " ID no: " + jtfField1.getText());
+                resetField();
+            } else {
+                System.out.println("Delete aborted.");
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jBtnRegisterActionPerformed
+    
+    private boolean checkEmpty() {
+        for (int i = 0; i < fieldCount; i++) {
+            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+            if (jtfMap.get(textFieldAccessor).getText().trim().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
     private void connectQuery(String sqlQuery){
         try {
             connection = DriverManager.getConnection(connectionUrl);
@@ -712,7 +1091,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             
             int rowCount = resultSet.getRow();
             int colCount = resultSet.getMetaData().getColumnCount();
-            
+            fieldCount = colCount;
             // Add columns to the tableModel
             for(int i = 1; i<= colCount; i++) {
                 tableModel.addColumn(resultSet.getMetaData().getColumnName(i));
@@ -754,15 +1133,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             String textFieldAccessor = "jtfField" + Integer.toString(i+1);
                             
                             jlMap.get(labelAccessor).setText(fieldLabel);
-                            jlMap.get(labelAccessor).setEnabled(false);
                             jtfMap.get(textFieldAccessor).setText(fieldText);
-                            jtfMap.get(textFieldAccessor).setEnabled(false);
-                            
+                            jtfMap.get(textFieldAccessor).setEditable(false);
                         }
+                        jbEdit.setEnabled(true);
+                        jBtnDelete.setEnabled(true);
                     }
                 }
             });
-            
+            jBtnAdd.setEnabled(true);
             table.setEnabled(false);
             
         } catch (SQLException e) {
@@ -795,11 +1174,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardAdmin().setVisible(true);
+                new DashboardAdmin().setVisible(false);
+                new LoginForm().setVisible(true);
             }
         });
     }
@@ -817,6 +1196,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnOperation;
     private javax.swing.JButton jBtnPayment;
     private javax.swing.JButton jBtnRefresh;
+    private javax.swing.JButton jBtnRegister;
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnShipment;
