@@ -218,7 +218,7 @@ public class LoginForm extends javax.swing.JFrame {
                 "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sunshine141muhuf;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -272,10 +272,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+                "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sunshine141muhuf;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
