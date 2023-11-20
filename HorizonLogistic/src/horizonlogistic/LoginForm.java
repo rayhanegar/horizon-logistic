@@ -41,7 +41,6 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -232,10 +231,10 @@ public class LoginForm extends javax.swing.JFrame {
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://HASHBROWN:1433;"
+                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=sunshine141muhuf;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -290,10 +289,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HASHBROWN:1433;"
+                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=sunshine141muhuf;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

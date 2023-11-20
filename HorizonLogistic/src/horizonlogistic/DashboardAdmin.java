@@ -23,10 +23,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=sunshine141muhuf;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -736,9 +736,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnOperationActionPerformed
 
     private void jBtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogoutActionPerformed
-        LoginForm LF = new LoginForm();
-        LF.setVisible(true);
-        this.dispose();
+        int responseLogout = JOptionPane.showConfirmDialog(this, "Do you want to log out?", "Confirm Log Out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(responseLogout == JOptionPane.YES_OPTION){
+            LoginForm LF = new LoginForm();
+            LF.setVisible(true);
+            this.dispose();
+        }else if(responseLogout == JOptionPane.NO_OPTION){
+ 
+        }else if(responseLogout == JOptionPane.CLOSED_OPTION){
+
+        }
     }//GEN-LAST:event_jBtnLogoutActionPerformed
 
     private void jtfField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField1ActionPerformed
