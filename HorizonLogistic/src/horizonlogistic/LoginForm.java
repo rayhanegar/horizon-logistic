@@ -50,7 +50,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jlHeader1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jlHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlHeader1.setText("Hii! Welcome to");
+        jlHeader1.setText("Hi! Welcome to");
         jlHeader1.setPreferredSize(new java.awt.Dimension(250, 100));
         jlHeader1.setRequestFocusEnabled(false);
 
@@ -231,10 +231,10 @@ public class LoginForm extends javax.swing.JFrame {
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sunshine141muhuf;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -289,10 +289,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sunshine141muhuf;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

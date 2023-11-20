@@ -23,10 +23,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HUSAINFADHLILLA:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sunshine141muhuf;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -116,7 +116,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -644,9 +643,59 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfKeywordsActionPerformed
 
     private void jBtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnSearchActionPerformed
+        resetField();
+        String tableName = section;
+        String keywords = jtfKeywords.getText();
 
+        String connectionUrl =
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                + "database=Horizon_Logistic;"
+                + "user=sa;"
+                + "password=sannskuy;"
+                + "encrypt=false;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
+
+        if (!keywords.isEmpty()) {
+            try {
+                Connection connection = DriverManager.getConnection(connectionUrl);
+
+                StringBuilder conditionBuilder = new StringBuilder();
+                for (int i = 0; i < fieldCount; i++) {
+                    String columnName = jTable.getColumnName(i);
+                    conditionBuilder.append(columnName).append(" LIKE ?");
+                    if (i < fieldCount - 1) {
+                        conditionBuilder.append(" OR ");
+                    }
+                }
+
+                String sql = "SELECT * FROM " + tableName + " WHERE " + conditionBuilder.toString();
+                PreparedStatement searchQuery = connection.prepareStatement(sql);
+
+                for (int i = 0; i < fieldCount; i++) {
+                    searchQuery.setString(i + 1, "%" + keywords + "%");
+                }
+
+                ResultSet result = searchQuery.executeQuery();
+
+                DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+                model.setRowCount(0);
+
+                while (result.next()) {
+                    Object[] row = new Object[fieldCount];
+                    for (int i = 0; i < fieldCount; i++) {
+                        row[i] = result.getObject(i + 1);
+                    }
+                    model.addRow(row);
+                }
+
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jBtnSearchActionPerformed
+    
     private void jBtnKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnKendaraanActionPerformed
         // TODO add your handling code here:
         resetField();
