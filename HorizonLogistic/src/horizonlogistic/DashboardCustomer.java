@@ -66,7 +66,6 @@ public class DashboardCustomer extends javax.swing.JFrame {
         jlSidebarTitle = new javax.swing.JLabel();
         jBtnNewShipment = new javax.swing.JButton();
         jBtnShipment = new javax.swing.JButton();
-        jBtnEmployee = new javax.swing.JButton();
         jBtnClearance = new javax.swing.JButton();
         jBtnKendaraan = new javax.swing.JButton();
         jBtnLogout = new javax.swing.JButton();
@@ -154,15 +153,6 @@ public class DashboardCustomer extends javax.swing.JFrame {
             }
         });
 
-        jBtnEmployee.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnEmployee.setText("Tracking Shipment");
-        jBtnEmployee.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnEmployeeActionPerformed(evt);
-            }
-        });
-
         jBtnClearance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnClearance.setText("History");
         jBtnClearance.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -205,7 +195,6 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnNewShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,12 +210,10 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(108, 108, 108)
                 .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -758,18 +745,6 @@ public class DashboardCustomer extends javax.swing.JFrame {
         populateTable(jTable, jspTable);
         setComboBoxModel();
     }//GEN-LAST:event_jBtnShipmentActionPerformed
-
-    private void jBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEmployeeActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "employee";
-        String sqlQuery = "SELECT * FROM employee";
-        jlSectionTitle.setText("Employee");
-        jlSectionDetail.setText("Employee Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnEmployeeActionPerformed
 
     private void jBtnClearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearanceActionPerformed
         // TODO add your handling code here:
@@ -1395,7 +1370,6 @@ public class DashboardCustomer extends javax.swing.JFrame {
     private javax.swing.JButton jBtnAdd;
     private javax.swing.JButton jBtnClearance;
     private javax.swing.JButton jBtnDelete;
-    private javax.swing.JButton jBtnEmployee;
     private javax.swing.JButton jBtnKendaraan;
     private javax.swing.JButton jBtnLogout;
     private javax.swing.JButton jBtnNewShipment;
