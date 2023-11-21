@@ -138,7 +138,7 @@ public class DashboardMyProfil extends javax.swing.JFrame {
 
         jlSidebarTitle5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlSidebarTitle5.setText("SHIPMENT");
+        jlSidebarTitle5.setText("MY PROFILE");
         jlSidebarTitle5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
