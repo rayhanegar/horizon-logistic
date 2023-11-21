@@ -232,10 +232,10 @@ public class LoginForm extends javax.swing.JFrame {
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=123;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -290,10 +290,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=123;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

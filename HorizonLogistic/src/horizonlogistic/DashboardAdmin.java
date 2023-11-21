@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=123;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -518,11 +518,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
-        jlFilter.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jlFilter.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlFilter.setText("Filter by Top");
 
-        jlSort.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jlSort.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlSort.setText("Sort by Column");
 
@@ -586,28 +584,29 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jBtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jpContentLayout.createSequentialGroup()
-                            .addGap(67, 67, 67)
-                            .addComponent(jlSort)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonSort, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonFilterTop))
-                        .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContentLayout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jRadioDescending))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jBtnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jpContentLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpContentLayout.createSequentialGroup()
+                                .addComponent(jlSort)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jpContentLayout.createSequentialGroup()
+                                .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioDescending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(105, 105, 105)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jlFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonFilterTop, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jspTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
             jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,10 +739,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         String keywords = jtfKeywords.getText();
 
         String connectionUrl =
-                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=123;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -902,13 +901,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfField1ActionPerformed
 
     private void jbEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditActionPerformed
-        // TODO add your handling code here:
-        for (int i = 1; i < fieldCount; i++){
-            String labelAccessor = "jlField" + Integer.toString(i+1);
-            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
-            jtfMap.get(textFieldAccessor).setEditable(true);
+        int dialogResult = JOptionPane.showConfirmDialog (this, "Do you want to edit?","Edit Confirmation", JOptionPane.YES_NO_OPTION);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            for (int i = 1; i < fieldCount; i++){
+                String labelAccessor = "jlField" + Integer.toString(i+1);
+                String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+                jtfMap.get(textFieldAccessor).setEditable(true);
+            }
+            jBtnSave.setEnabled(true);
         }
-        jBtnSave.setEnabled(true);
     }//GEN-LAST:event_jbEditActionPerformed
 
     private void jBtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveActionPerformed
@@ -1022,6 +1023,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
             updateStatement.executeUpdate();
             System.out.println("Successfully save edit.");
+            JOptionPane.showMessageDialog(this, "Successfully saved edit.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
             for (int i = 1; i < fieldCount; i++){
                 String textFieldAccessor = "jtfField" + Integer.toString(i+1);
                 jtfMap.get(textFieldAccessor).setEditable(false);
@@ -1029,6 +1032,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jBtnSave.setEnabled(false);
         } catch (SQLException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error occurred while saving edit.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtnSaveActionPerformed
 
@@ -1049,13 +1053,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
             if(confirmation == JOptionPane.YES_OPTION){
                 dropStatement.execute();
                 System.out.println("Successfully deleted from "+ section + " ID no: " + jtfField1.getText());
+                JOptionPane.showMessageDialog(this, "Successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 resetField();
             } else {
                 System.out.println("Delete aborted.");
+                JOptionPane.showMessageDialog(this, "Delete aborted.", "Cancel Deletion", JOptionPane.INFORMATION_MESSAGE);
             }
             
         } catch (SQLException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error occurred while deleting.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtnDeleteActionPerformed
 
@@ -1197,13 +1204,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
             if(confirmation == JOptionPane.YES_OPTION){
                 insertStatement.execute();
                 System.out.println("Successfully register new entry to "+ section + " ID no: " + jtfField1.getText());
+                JOptionPane.showMessageDialog(this, "Successfully registered.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 resetField();
             } else {
-                System.out.println("Delete aborted.");
+                System.out.println("Register aborted.");
+                JOptionPane.showMessageDialog(this, "Register aborted.", "Cancel Register", JOptionPane.INFORMATION_MESSAGE);
             }
             
         } catch (SQLException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error occurred while registering.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtnRegisterActionPerformed
 
