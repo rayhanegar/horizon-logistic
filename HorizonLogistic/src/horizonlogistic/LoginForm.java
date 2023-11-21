@@ -10,6 +10,7 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form DashboardForm
      */
+    
     public LoginForm() {
         initComponents();
         setLocationRelativeTo(null);
@@ -231,10 +232,10 @@ public class LoginForm extends javax.swing.JFrame {
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -289,10 +290,10 @@ public class LoginForm extends javax.swing.JFrame {
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

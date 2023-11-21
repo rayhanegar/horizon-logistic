@@ -16,6 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ButtonGroup;
+
 
 /**
  *
@@ -23,10 +26,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+    private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -112,6 +115,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnAdd = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
         jBtnRegister = new javax.swing.JButton();
+        jComboBoxTop = new javax.swing.JComboBox<>();
+        jlFilter = new javax.swing.JLabel();
+        jlSort = new javax.swing.JLabel();
+        jComboBoxSort = new javax.swing.JComboBox<>();
+        jRadioAscending = new javax.swing.JRadioButton();
+        jRadioDescending = new javax.swing.JRadioButton();
+        jButtonSort = new javax.swing.JButton();
+        jButtonFilterTop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
@@ -396,7 +407,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jtfField11, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfField12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfField13, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jpDetailLayout.setVerticalGroup(
             jpDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,35 +511,103 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxTop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jComboBoxTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTopActionPerformed(evt);
+            }
+        });
+
+        jlFilter.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jlFilter.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlFilter.setText("Filter by Top");
+
+        jlSort.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jlSort.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlSort.setText("Sort by Column");
+
+        jComboBoxSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSortActionPerformed(evt);
+            }
+        });
+
+        jRadioAscending.setText("Ascending");
+        jRadioAscending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioAscendingActionPerformed(evt);
+            }
+        });
+
+        jRadioDescending.setText("Descending");
+        jRadioDescending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioDescendingActionPerformed(evt);
+            }
+        });
+
+        jButtonSort.setText("Apply Sort");
+        jButtonSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSortActionPerformed(evt);
+            }
+        });
+
+        jButtonFilterTop.setText("Apply Filter");
+        jButtonFilterTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterTopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
         jpContent.setLayout(jpContentLayout);
         jpContentLayout.setHorizontalGroup(
             jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContentLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpContentLayout.createSequentialGroup()
-                            .addComponent(jlSectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBtnSearch)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBtnRefresh)))
+                .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpContentLayout.createSequentialGroup()
+                        .addComponent(jlSectionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnRefresh))
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jspDetail)
-                            .addComponent(jlSectionDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
                         .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBtnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jpContentLayout.createSequentialGroup()
+                            .addGap(67, 67, 67)
+                            .addComponent(jlSort)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonSort, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonFilterTop))
+                        .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContentLayout.createSequentialGroup()
+                            .addGap(78, 78, 78)
+                            .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jRadioDescending))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
             jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,22 +620,34 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jlSectionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlSort)
+                    .addComponent(jlFilter)
+                    .addComponent(jButtonSort)
+                    .addComponent(jButtonFilterTop)
+                    .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioDescending)
+                    .addComponent(jRadioAscending))
+                .addGap(21, 21, 21)
                 .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpContentLayout.createSequentialGroup()
                         .addComponent(jbEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnSave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnRegister))
                     .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(169, 169, 169))
+                .addGap(105, 105, 105))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -628,7 +719,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnDelete.setEnabled(false);
     }
     private void jBtnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCustomerActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
         resetField();
         section = "customer";
         String sqlQuery = "SELECT * FROM customer";
@@ -636,6 +727,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Customer Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnCustomerActionPerformed
 
     private void jtfKeywordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKeywordsActionPerformed
@@ -648,10 +740,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         String keywords = jtfKeywords.getText();
 
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -705,6 +797,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Kendaraan Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnKendaraanActionPerformed
 
     private void jBtnShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnShipmentActionPerformed
@@ -716,6 +809,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Shipment Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnShipmentActionPerformed
 
     private void jBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEmployeeActionPerformed
@@ -727,6 +821,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Employee Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnEmployeeActionPerformed
 
     private void jBtnClearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearanceActionPerformed
@@ -738,6 +833,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Clearance Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnClearanceActionPerformed
 
     private void jBtnDeliveryLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeliveryLegActionPerformed
@@ -749,6 +845,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Deliv. Leg Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnDeliveryLegActionPerformed
 
     private void jBtnDroppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDroppointActionPerformed
@@ -760,6 +857,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Drop point Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnDroppointActionPerformed
 
     private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
@@ -771,6 +869,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Payment Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnPaymentActionPerformed
 
     private void jBtnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOperationActionPerformed
@@ -782,6 +881,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSectionDetail.setText("Operation Detail");
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
+        setComboBoxModel();
     }//GEN-LAST:event_jBtnOperationActionPerformed
 
     private void jBtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogoutActionPerformed
@@ -1106,6 +1206,148 @@ public class DashboardAdmin extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jBtnRegisterActionPerformed
+
+    private void jRadioDescendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioDescendingActionPerformed
+        ButtonGroup sortOrderGroup = new ButtonGroup();
+            sortOrderGroup.add(jRadioAscending);
+            sortOrderGroup.add(jRadioDescending);
+    }//GEN-LAST:event_jRadioDescendingActionPerformed
+
+    private void jButtonSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSortActionPerformed
+   String selectedColumnName = (String) jComboBoxSort.getSelectedItem();
+
+    // Memanggil metode untuk mengurutkan tabel berdasarkan kolom
+    sortTableByColumn(selectedColumnName);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSortActionPerformed
+
+    private void jButtonFilterTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterTopActionPerformed
+                                              
+    String tableName = section;
+
+    // Assuming selectedTopValue is of type Integer
+    String selectedTopValueStr = (String) jComboBoxTop.getSelectedItem();
+
+    try {
+        Integer selectedTopValue = Integer.parseInt(selectedTopValueStr);
+
+        // The rest of your code
+        String columnName = (String) jComboBoxSort.getSelectedItem(); 
+        if (columnName != null) {
+            String query = "SELECT TOP " + "?" + " * FROM " + tableName + " ORDER BY " + columnName + ";";
+
+            try {
+                // TODO: Execute the query and do something with it
+                connection = DriverManager.getConnection(connectionUrl);
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setInt(1, selectedTopValue);
+
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        while (resultSet.next()) {
+                            // Process each row of the result set
+                            // Example: Access data using resultSet.getString("columnName")
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception properly in your application
+                JOptionPane.showMessageDialog(this, "Error executing the query: " + e.getMessage());
+            } finally {
+                try {
+                    if (connection != null && !connection.isClosed()) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selected column name is null. Please check your JComboBox data model.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please select a valid integer value for the top value.");
+    }
+
+
+    }//GEN-LAST:event_jButtonFilterTopActionPerformed
+
+    private void jComboBoxSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSortActionPerformed
+ setComboBoxModel();     
+
+                                              
+     
+    }//GEN-LAST:event_jComboBoxSortActionPerformed
+
+    private void jRadioAscendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioAscendingActionPerformed
+      ButtonGroup sortOrderGroup = new ButtonGroup();
+            sortOrderGroup.add(jRadioAscending);
+            sortOrderGroup.add(jRadioDescending);
+         
+    }//GEN-LAST:event_jRadioAscendingActionPerformed
+
+    private void jComboBoxTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTopActionPerformed
+                                                   
+   
+    // TODO: Execute the query and display the results
+                                         
+
+    }//GEN-LAST:event_jComboBoxTopActionPerformed
+    
+
+    private void sortTableByColumn(String columnName) {
+        ButtonGroup sortOrderGroup = new ButtonGroup();
+            sortOrderGroup.add(jRadioAscending);
+            sortOrderGroup.add(jRadioDescending);
+     String tableName = section; // Ganti dengan nama tabel yang sesuai
+
+    // Mendapatkan arah pengurutan dari radio button
+   
+    // Memastikan hanya satu radio button yang dipilih
+    if (jRadioAscending.isSelected()) {
+         String sortOrder1 = "ASC" ;
+    String sqlQuery = "SELECT * FROM " + tableName + " ORDER BY " + columnName + " " + sortOrder1;
+     // Menjalankan query untuk mendapatkan data yang diurutkan
+    connectQuery(sqlQuery);
+    populateTable(jTable, jspTable);
+    }
+   
+    else if (jRadioDescending.isSelected()) {
+         String sortOrder = "DESC" ;
+    String sqlQuery = "SELECT * FROM " + tableName + " ORDER BY " + columnName + " " + sortOrder;
+     // Menjalankan query untuk mendapatkan data yang diurutkan
+    connectQuery(sqlQuery);
+    populateTable(jTable, jspTable);
+    }
+}
+
+    
+    
+    private void setComboBoxModel() {
+ int fieldCount = jTable.getColumnCount();
+    DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
+
+    for (int i = 0; i < fieldCount; i++) {
+        String columnName = jTable.getColumnName(i);
+        comboBoxModel.addElement(columnName);
+    }
+
+    // Simpan indeks yang dipilih sebelumnya
+    int selectedIndexBefore = jComboBoxSort.getSelectedIndex();
+
+    // Mengatur model ComboBox yang baru
+    jComboBoxSort.setModel(comboBoxModel);
+
+    // Mengembalikan indeks yang dipilih sebelumnya (jika valid)
+    if (selectedIndexBefore >= 0 && selectedIndexBefore < fieldCount) {
+        jComboBoxSort.setSelectedIndex(selectedIndexBefore);
+    }
+
+    // Menampilkan item terpilih dalam JComboBox
+    String selectedColumnName = (String) jComboBoxSort.getSelectedItem();
+    System.out.println("Nama Kolom yang Dipilih: " + selectedColumnName);
+}
+
+
     
     private boolean checkEmpty() {
         for (int i = 0; i < fieldCount; i++) {
@@ -1256,6 +1498,12 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnShipment;
+    private javax.swing.JButton jButtonFilterTop;
+    private javax.swing.JButton jButtonSort;
+    private javax.swing.JComboBox<String> jComboBoxSort;
+    private javax.swing.JComboBox<String> jComboBoxTop;
+    private javax.swing.JRadioButton jRadioAscending;
+    private javax.swing.JRadioButton jRadioDescending;
     private javax.swing.JTable jTable;
     private javax.swing.JButton jbEdit;
     private javax.swing.JLabel jlField1;
@@ -1271,9 +1519,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jlField7;
     private javax.swing.JLabel jlField8;
     private javax.swing.JLabel jlField9;
+    private javax.swing.JLabel jlFilter;
     private javax.swing.JLabel jlSectionDetail;
     private javax.swing.JLabel jlSectionTitle;
     private javax.swing.JLabel jlSidebarTitle;
+    private javax.swing.JLabel jlSort;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpDetail;
     private javax.swing.JPanel jpSidebar;
