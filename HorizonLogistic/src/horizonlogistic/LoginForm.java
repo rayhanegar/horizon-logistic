@@ -222,6 +222,8 @@ public class LoginForm extends javax.swing.JFrame {
             DashboardAdmin DA = new DashboardAdmin();
             DA.setVisible(true);
             this.dispose();
+            System.out.println("Successfully login as admin.");
+            JOptionPane.showMessageDialog(this, "Successfully login as admin.", "Login Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Sorry, email or password is wrong!", "Login Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -250,9 +252,11 @@ public class LoginForm extends javax.swing.JFrame {
             ResultSet result = statement.executeQuery();
             
             if (result.next()) {
-                DashboardAdmin DA = new DashboardAdmin();
-                DA.setVisible(true);
+                DashboardCustomer DC = new DashboardCustomer();
+                DC.setVisible(true);
                 this.dispose();
+                System.out.println("Successfully login as customer.");
+                JOptionPane.showMessageDialog(this, "Successfully login as customer.", "Login Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Sorry, email or password is wrong!", "Login Error", JOptionPane.ERROR_MESSAGE);
             }
