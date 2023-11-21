@@ -54,47 +54,51 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   <Component id="logoHL" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="82" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jlHeader2" min="-2" pref="350" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jlHeader2" min="-2" pref="350" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jlHeader1" alignment="0" pref="350" max="32767" attributes="0"/>
+                                              <Component id="jlHeader4" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jlHeader3" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jlDesc" min="-2" pref="350" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jlHeader1" alignment="0" pref="350" max="32767" attributes="0"/>
-                                      <Component id="jlHeader4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jlHeader3" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="adminLoginButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="customerLoginButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jlDesc" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jlEmail" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <Component id="jlPassword" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="emailTxt" min="-2" pref="180" max="-2" attributes="0"/>
-                                          <Component id="passwordTxt" min="-2" pref="180" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="adminLoginButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="customerLoginButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlEmail" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="jlPassword" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="emailTxt" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="passwordTxt" min="-2" pref="180" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
