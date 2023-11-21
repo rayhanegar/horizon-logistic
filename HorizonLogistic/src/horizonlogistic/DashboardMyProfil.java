@@ -24,7 +24,7 @@ import javax.swing.ButtonGroup;
  *
  * @author RAYHAN EGAR
  */
-public class DashboardShipment extends javax.swing.JFrame {
+public class DashboardMyProfil extends javax.swing.JFrame {
     
     private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
@@ -46,7 +46,7 @@ public class DashboardShipment extends javax.swing.JFrame {
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardShipment() {
+    public DashboardMyProfil() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -82,12 +82,16 @@ public class DashboardShipment extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jlSidebarTitle7 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
+        jbtnMakeShipment2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
@@ -205,17 +209,16 @@ public class DashboardShipment extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Jalan");
+        jLabel6.setText("First Name");
 
         jlSidebarTitle6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlSidebarTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlSidebarTitle6.setText("Please fill in the required data below!");
+        jlSidebarTitle6.setText("User Information and Biodata");
         jlSidebarTitle6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jbtnMakeShipment1.setBackground(new java.awt.Color(255, 255, 0));
-        jbtnMakeShipment1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jbtnMakeShipment1.setText("Make My Shipment");
+        jbtnMakeShipment1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbtnMakeShipment1.setText("Save");
         jbtnMakeShipment1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnMakeShipment1ActionPerformed(evt);
@@ -224,7 +227,7 @@ public class DashboardShipment extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Kota");
+        jLabel7.setText("Surname");
 
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +245,7 @@ public class DashboardShipment extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Negara");
+        jLabel8.setText("Social Number / NIK");
 
         jTextField9.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -253,11 +256,11 @@ public class DashboardShipment extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Kode Pos / Zipcode");
+        jLabel9.setText("Jalan");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Berat");
+        jLabel10.setText("Kota");
 
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
@@ -266,10 +269,6 @@ public class DashboardShipment extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Deskripsi");
-
         jTextField11.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,78 +276,126 @@ public class DashboardShipment extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Ukuran / Dimensi");
+        jLabel13.setText("Negara");
 
         jlSidebarTitle7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlSidebarTitle7.setText("Make the delivery you want.");
+        jlSidebarTitle7.setText("My Profil");
         jlSidebarTitle7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle7.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Kode Pos / Zipcode");
+
+        jTextField12.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+
+        jTextField13.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField13ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("Nomor Telepon");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Email");
+
+        jTextField14.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField14ActionPerformed(evt);
+            }
+        });
+
+        jbtnMakeShipment2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbtnMakeShipment2.setText("Edit My Profil");
+        jbtnMakeShipment2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnMakeShipment2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpContent1Layout = new javax.swing.GroupLayout(jpContent1);
         jpContent1.setLayout(jpContent1Layout);
         jpContent1Layout.setHorizontalGroup(
             jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlSidebarTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlSidebarTitle7, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(104, 104, 104))
             .addGroup(jpContent1Layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpContent1Layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpContent1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(122, 122, 122))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jbtnMakeShipment2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jbtnMakeShipment1)))))
+                        .addGap(1, 1, 1))
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121))
-                    .addGroup(jpContent1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnMakeShipment1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
-                .addGap(0, 129, Short.MAX_VALUE)
-                .addComponent(jlSidebarTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
-            .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
-                    .addContainerGap(126, Short.MAX_VALUE)
-                    .addComponent(jlSidebarTitle7, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(99, 99, 99)))
         );
         jpContent1Layout.setVerticalGroup(
             jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContent1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(32, 32, 32)
+                .addComponent(jlSidebarTitle7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlSidebarTitle6)
-                .addGap(52, 52, 52)
+                .addGap(35, 35, 35)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -372,18 +419,23 @@ public class DashboardShipment extends javax.swing.JFrame {
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addComponent(jbtnMakeShipment1)
-                .addContainerGap(207, Short.MAX_VALUE))
-            .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpContent1Layout.createSequentialGroup()
-                    .addGap(51, 51, 51)
-                    .addComponent(jlSidebarTitle7)
-                    .addContainerGap(742, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnMakeShipment1)
+                    .addComponent(jbtnMakeShipment2))
+                .addGap(200, 200, 200))
         );
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
@@ -463,6 +515,22 @@ public class DashboardShipment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnMakeShipmentActionPerformed
 
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField13ActionPerformed
+
+    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField14ActionPerformed
+
+    private void jbtnMakeShipment2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMakeShipment2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnMakeShipment2ActionPerformed
+
     private boolean checkEmpty() {
         for (int i = 0; i < fieldCount; i++) {
             String textFieldAccessor = "jtfField" + Integer.toString(i+1);
@@ -513,19 +581,19 @@ public class DashboardShipment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardMyProfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardMyProfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardMyProfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardMyProfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardShipment().setVisible(false);
+                new DashboardMyProfil().setVisible(false);
                 new LoginForm().setVisible(true);
             }
         });
@@ -533,16 +601,19 @@ public class DashboardShipment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
@@ -550,6 +621,7 @@ public class DashboardShipment extends javax.swing.JFrame {
     private javax.swing.JButton jbtnBackMenu;
     private javax.swing.JButton jbtnMakeShipment;
     private javax.swing.JButton jbtnMakeShipment1;
+    private javax.swing.JButton jbtnMakeShipment2;
     private javax.swing.JLabel jlSidebarTitle;
     private javax.swing.JLabel jlSidebarTitle1;
     private javax.swing.JLabel jlSidebarTitle3;

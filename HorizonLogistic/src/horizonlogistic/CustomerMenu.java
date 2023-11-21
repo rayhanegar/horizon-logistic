@@ -114,7 +114,7 @@ public class CustomerMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(532, 532, 532)
+                        .addGap(552, 552, 552)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -126,9 +126,9 @@ public class CustomerMenu extends javax.swing.JFrame {
                                     .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jlHeaderMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(582, 582, 582)
+                        .addGap(602, 602, 602)
                         .addComponent(jlTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +165,9 @@ public class CustomerMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
-        
+        DashboardPayment DP = new DashboardPayment();
+        DP.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBtnPaymentActionPerformed
 
     private void jBtnNewShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewShipmentActionPerformed
@@ -188,11 +190,15 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnLogoutActionPerformed
 
     private void jBtnMyHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMyHistoryActionPerformed
-        // TODO add your handling code here:
+        DashboardMyHistory DH = new DashboardMyHistory();
+        DH.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBtnMyHistoryActionPerformed
 
     private void jBtnMyProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMyProfilActionPerformed
-        // TODO add your handling code here:
+        DashboardMyProfil DProf = new DashboardMyProfil();
+        DProf.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBtnMyProfilActionPerformed
 
     /**
