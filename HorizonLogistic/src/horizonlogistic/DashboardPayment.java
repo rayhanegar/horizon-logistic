@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardPayment extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -41,6 +41,7 @@ public class DashboardPayment extends javax.swing.JFrame {
     private Map<String, JTextField> jtfMap;
     private Map<String, JLabel> jlMap;
     private String section;
+    private String email_cust;
     private int fieldCount;
     
     /**
@@ -467,7 +468,7 @@ public class DashboardPayment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void jbtnBackMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackMenuActionPerformed
-        CustomerMenu CM = new CustomerMenu();
+        CustomerMenu CM = new CustomerMenu(email_cust);
         CM.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtnBackMenuActionPerformed

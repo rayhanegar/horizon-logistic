@@ -10,10 +10,11 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      * Creates new form DashboardForm
      */
-    
-    public CustomerMenu() {
+    private String email_cust;
+    public CustomerMenu(String email_cust) {
         initComponents();
         setLocationRelativeTo(null);
+        this.email_cust = email_cust;
     }
 
     /**
@@ -98,7 +99,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         jlTitle.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jBtnMyProfil.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jBtnMyProfil.setText("My Profil");
+        jBtnMyProfil.setText("My Profile");
         jBtnMyProfil.setFocusable(false);
         jBtnMyProfil.setPreferredSize(new java.awt.Dimension(250, 30));
         jBtnMyProfil.addActionListener(new java.awt.event.ActionListener() {
@@ -198,13 +199,13 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnLogoutActionPerformed
 
     private void jBtnMyHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMyHistoryActionPerformed
-        DashboardMyHistory DH = new DashboardMyHistory();
+        DashboardMyHistory DH = new DashboardMyHistory(email_cust);
         DH.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnMyHistoryActionPerformed
 
     private void jBtnMyProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMyProfilActionPerformed
-        DashboardMyProfil DProf = new DashboardMyProfil();
+        DashboardMyProfil DProf = new DashboardMyProfil(email_cust);
         DProf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnMyProfilActionPerformed
@@ -212,41 +213,41 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerMenu().setVisible(true);
-                new DashboardAdmin().setVisible(false);
-            }
-        });
-        
-        String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
-                + "database=Horizon_Logistic;"
-                + "user=sa;"
-                + "password=sannskuy;"
-                + "encrypt=false;"
-                + "trustServerCertificate=false;"
-                + "loginTimeout=30;";
-
-        ResultSet setResult = null;
-
-        try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-            System.out.println("Yeay, Connected successfully!");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Sorry, Connection failed :)");
-        }
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CustomerMenu(email_cust).setVisible(true);
+//                new DashboardAdmin().setVisible(false);
+//            }
+//        });
+//        
+//        String connectionUrl =
+//                "jdbc:sqlserver://HASHBROWN:1433;"
+//                + "database=Horizon_Logistic;"
+//                + "user=sa;"
+//                + "password=basisdata;"
+//                + "encrypt=false;"
+//                + "trustServerCertificate=false;"
+//                + "loginTimeout=30;";
+//
+//        ResultSet setResult = null;
+//
+//        try (Connection connection = DriverManager.getConnection(connectionUrl);) {
+//            System.out.println("Yeay, Connected successfully!");
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("Sorry, Connection failed :)");
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnLogout;

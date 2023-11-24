@@ -233,14 +233,14 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_adminLoginButtonActionPerformed
 
     private void customerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerLoginButtonActionPerformed
-        String emailCust = emailTxt.getText();
+        String email_cust = emailTxt.getText();
         String passwordCust = passwordTxt.getText();
          
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -251,11 +251,11 @@ public class LoginForm extends javax.swing.JFrame {
             String sql = "SELECT * FROM customer WHERE email_cust = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             
-            statement.setString(1, emailCust);
+            statement.setString(1, email_cust);
             ResultSet result = statement.executeQuery();
             
             if (result.next()) {
-                CustomerMenu CM = new CustomerMenu();
+                CustomerMenu CM = new CustomerMenu(email_cust);
                 CM.setVisible(true);
                 this.dispose();
                 System.out.println("Successfully login as customer.");
@@ -292,15 +292,15 @@ public class LoginForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginForm().setVisible(true);
-                new DashboardAdmin().setVisible(false);
+//                new DashboardAdmin().setVisible(false);
             }
         });
         
         String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

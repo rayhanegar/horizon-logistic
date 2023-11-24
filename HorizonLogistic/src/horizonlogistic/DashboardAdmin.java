@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -737,15 +737,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         resetField();
         String tableName = section;
         String keywords = jtfKeywords.getText();
-
-        String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
-                + "database=Horizon_Logistic;"
-                + "user=sa;"
-                + "password=sannskuy;"
-                + "encrypt=false;"
-                + "trustServerCertificate=false;"
-                + "loginTimeout=30;";
 
         if (!keywords.isEmpty()) {
             try {

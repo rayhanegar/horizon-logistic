@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardMyHistory extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=basisdata;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -40,15 +40,21 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private PreparedStatement preparedStatement;
     private Map<String, JTextField> jtfMap;
     private Map<String, JLabel> jlMap;
-    private String section;
+    private String section = "shipment";
     private int fieldCount;
+    private String email_cust;
+    private String userId;
     
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardMyHistory() {
+    public DashboardMyHistory(String email) {
         initComponents();
         setLocationRelativeTo(null);
+        populateTable(jTable, jspTable);
+        this.email_cust = email;
+        connectQuery("SELECT * FROM shipment WHERE email_cust = " + email_cust);
+        populateTable(jTable, jspTable);
     }
     
     /**
@@ -62,7 +68,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
 
         jpSidebar = new javax.swing.JPanel();
         jlSidebarTitle = new javax.swing.JLabel();
-        jbtnBackMenu = new javax.swing.JButton();
+        jBtnBack = new javax.swing.JButton();
         jlSidebarTitle1 = new javax.swing.JLabel();
         jlSidebarTitle3 = new javax.swing.JLabel();
         jlSidebarTitle4 = new javax.swing.JLabel();
@@ -70,40 +76,40 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         jpContent = new javax.swing.JPanel();
         jpContent1 = new javax.swing.JPanel();
         jlSectionTitle3 = new javax.swing.JLabel();
-        jtfKeywords1 = new javax.swing.JTextField();
-        jBtnSearch1 = new javax.swing.JButton();
-        jspTable2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtfKeywords = new javax.swing.JTextField();
+        jBtnSearch = new javax.swing.JButton();
+        jspTable = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         jlSectionDetail2 = new javax.swing.JLabel();
-        jBtnRefresh2 = new javax.swing.JButton();
+        jBtnRefresh = new javax.swing.JButton();
         jspDetail2 = new javax.swing.JScrollPane();
         jpDetail2 = new javax.swing.JPanel();
-        jtfField27 = new javax.swing.JTextField();
-        jlField27 = new javax.swing.JLabel();
-        jlField28 = new javax.swing.JLabel();
-        jtfField28 = new javax.swing.JTextField();
-        jtfField29 = new javax.swing.JTextField();
-        jlField29 = new javax.swing.JLabel();
-        jlField30 = new javax.swing.JLabel();
-        jlField31 = new javax.swing.JLabel();
-        jtfField30 = new javax.swing.JTextField();
-        jtfField31 = new javax.swing.JTextField();
-        jtfField32 = new javax.swing.JTextField();
-        jtfField33 = new javax.swing.JTextField();
-        jtfField34 = new javax.swing.JTextField();
-        jtfField35 = new javax.swing.JTextField();
-        jtfField36 = new javax.swing.JTextField();
-        jtfField37 = new javax.swing.JTextField();
-        jtfField38 = new javax.swing.JTextField();
-        jtfField39 = new javax.swing.JTextField();
-        jlField32 = new javax.swing.JLabel();
-        jlField33 = new javax.swing.JLabel();
-        jlField34 = new javax.swing.JLabel();
-        jlField35 = new javax.swing.JLabel();
-        jlField36 = new javax.swing.JLabel();
-        jlField37 = new javax.swing.JLabel();
-        jlField38 = new javax.swing.JLabel();
-        jlField39 = new javax.swing.JLabel();
+        jtfField1 = new javax.swing.JTextField();
+        jlField1 = new javax.swing.JLabel();
+        jlField2 = new javax.swing.JLabel();
+        jtfField2 = new javax.swing.JTextField();
+        jtfField3 = new javax.swing.JTextField();
+        jlField3 = new javax.swing.JLabel();
+        jlField4 = new javax.swing.JLabel();
+        jlField5 = new javax.swing.JLabel();
+        jtfField4 = new javax.swing.JTextField();
+        jtfField5 = new javax.swing.JTextField();
+        jtfField6 = new javax.swing.JTextField();
+        jtfField7 = new javax.swing.JTextField();
+        jtfField8 = new javax.swing.JTextField();
+        jtfField9 = new javax.swing.JTextField();
+        jtfField10 = new javax.swing.JTextField();
+        jtfField11 = new javax.swing.JTextField();
+        jtfField12 = new javax.swing.JTextField();
+        jtfField13 = new javax.swing.JTextField();
+        jlField6 = new javax.swing.JLabel();
+        jlField7 = new javax.swing.JLabel();
+        jlField8 = new javax.swing.JLabel();
+        jlField9 = new javax.swing.JLabel();
+        jlField10 = new javax.swing.JLabel();
+        jlField11 = new javax.swing.JLabel();
+        jlField12 = new javax.swing.JLabel();
+        jlField13 = new javax.swing.JLabel();
         jBtnDelete = new javax.swing.JButton();
         jComboBoxTop = new javax.swing.JComboBox<>();
         jlFilter = new javax.swing.JLabel();
@@ -129,12 +135,12 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         jlSidebarTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jbtnBackMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbtnBackMenu.setText("Back to Menu");
-        jbtnBackMenu.setPreferredSize(new java.awt.Dimension(150, 30));
-        jbtnBackMenu.addActionListener(new java.awt.event.ActionListener() {
+        jBtnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBtnBack.setText("Back to Menu");
+        jBtnBack.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnBackMenuActionPerformed(evt);
+                jBtnBackActionPerformed(evt);
             }
         });
 
@@ -169,7 +175,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSidebarLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(jbtnBackMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpSidebarLayout.createSequentialGroup()
                 .addContainerGap()
@@ -197,7 +203,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlSidebarTitle3)
                 .addGap(66, 66, 66)
-                .addComponent(jbtnBackMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpSidebarLayout.createSequentialGroup()
@@ -216,25 +222,25 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         jlSectionTitle3.setText("Shipment & Payment History");
         jlSectionTitle3.setPreferredSize(new java.awt.Dimension(320, 32));
 
-        jtfKeywords1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jtfKeywords1.addActionListener(new java.awt.event.ActionListener() {
+        jtfKeywords.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtfKeywords.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfKeywords1ActionPerformed(evt);
+                jtfKeywordsActionPerformed(evt);
             }
         });
 
-        jBtnSearch1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jBtnSearch1.setText("Search");
-        jBtnSearch1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jBtnSearch.setText("Search");
+        jBtnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnSearch1ActionPerformed(evt);
+                jBtnSearchActionPerformed(evt);
             }
         });
 
-        jspTable2.setBackground(new java.awt.Color(255, 255, 255));
-        jspTable2.setPreferredSize(new java.awt.Dimension(690, 240));
+        jspTable.setBackground(new java.awt.Color(255, 255, 255));
+        jspTable.setPreferredSize(new java.awt.Dimension(690, 240));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -245,54 +251,54 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jspTable2.setViewportView(jTable2);
+        jspTable.setViewportView(jTable);
 
         jlSectionDetail2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jlSectionDetail2.setText("-Detail-");
         jlSectionDetail2.setPreferredSize(new java.awt.Dimension(100, 32));
 
-        jBtnRefresh2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jBtnRefresh2.setText("Refresh");
-        jBtnRefresh2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jBtnRefresh.setText("Refresh");
+        jBtnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnRefresh2ActionPerformed(evt);
+                jBtnRefreshActionPerformed(evt);
             }
         });
 
         jpDetail2.setBackground(new java.awt.Color(255, 255, 255));
         jpDetail2.setPreferredSize(new java.awt.Dimension(450, 500));
 
-        jtfField27.addActionListener(new java.awt.event.ActionListener() {
+        jtfField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfField27ActionPerformed(evt);
+                jtfField1ActionPerformed(evt);
             }
         });
 
-        jlField27.setText("field-1");
+        jlField1.setText("field-1");
 
-        jlField28.setText("field-2");
+        jlField2.setText("field-2");
 
-        jlField29.setText("field-3");
+        jlField3.setText("field-3");
 
-        jlField30.setText("field-4");
+        jlField4.setText("field-4");
 
-        jlField31.setText("field-5");
+        jlField5.setText("field-5");
 
-        jlField32.setText("field-6");
+        jlField6.setText("field-6");
 
-        jlField33.setText("field-7");
+        jlField7.setText("field-7");
 
-        jlField34.setText("field-8");
+        jlField8.setText("field-8");
 
-        jlField35.setText("field-9");
+        jlField9.setText("field-9");
 
-        jlField36.setText("field-10");
+        jlField10.setText("field-10");
 
-        jlField37.setText("field-11");
+        jlField11.setText("field-11");
 
-        jlField38.setText("field-12");
+        jlField12.setText("field-12");
 
-        jlField39.setText("field-13");
+        jlField13.setText("field-13");
 
         javax.swing.GroupLayout jpDetail2Layout = new javax.swing.GroupLayout(jpDetail2);
         jpDetail2.setLayout(jpDetail2Layout);
@@ -302,37 +308,37 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDetail2Layout.createSequentialGroup()
-                        .addComponent(jlField27, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfField27, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpDetail2Layout.createSequentialGroup()
                         .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlField28, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField29, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField30, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField31, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField32, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField33, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField34, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField35, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField36, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField37, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField38, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlField39, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlField2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField8, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField10, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField11, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlField13, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfField28, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField29, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField30, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField31, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField32, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField33, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField34, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField35, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField36, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField37, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField38, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfField39, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtfField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField10, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField11, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfField13, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jpDetail2Layout.setVerticalGroup(
@@ -340,56 +346,56 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             .addGroup(jpDetail2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField27))
+                    .addComponent(jtfField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField28))
+                    .addComponent(jtfField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField29))
+                    .addComponent(jtfField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField30))
+                    .addComponent(jtfField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField31))
+                    .addComponent(jtfField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField32))
+                    .addComponent(jtfField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlField33))
+                    .addComponent(jtfField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlField7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField34)
-                    .addComponent(jtfField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField8)
+                    .addComponent(jtfField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField35)
-                    .addComponent(jtfField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField9)
+                    .addComponent(jtfField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField36)
-                    .addComponent(jtfField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField10)
+                    .addComponent(jtfField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField37)
-                    .addComponent(jtfField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField11)
+                    .addComponent(jtfField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField38)
-                    .addComponent(jtfField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField12)
+                    .addComponent(jtfField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDetail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlField39)
-                    .addComponent(jtfField39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlField13)
+                    .addComponent(jtfField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -462,9 +468,8 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
                             .addComponent(jlSectionTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(357, 357, 357))
-                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jspDetail2)
-                            .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jspDetail2)
+                        .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpContent1Layout.createSequentialGroup()
                             .addGap(124, 124, 124)
                             .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +478,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonSort, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                    .addComponent(jButtonSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(jpContent1Layout.createSequentialGroup()
                                     .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -484,12 +489,12 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                             .addGap(176, 176, 176)))
                     .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jpContent1Layout.createSequentialGroup()
-                            .addComponent(jtfKeywords1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBtnSearch1)
+                            .addComponent(jBtnSearch)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBtnRefresh2))
-                        .addComponent(jspTable2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnRefresh))
+                        .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpContent1Layout.createSequentialGroup()
@@ -503,12 +508,12 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             .addGroup(jpContent1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtfKeywords1)
-                    .addComponent(jBtnRefresh2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfKeywords)
+                    .addComponent(jBtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSectionTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jspTable2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSort)
@@ -567,29 +572,20 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
  
-    private void jbtnBackMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackMenuActionPerformed
-        CustomerMenu CM = new CustomerMenu();
+    private void jBtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBackActionPerformed
+        CustomerMenu CM = new CustomerMenu(email_cust);
         CM.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jbtnBackMenuActionPerformed
+    }//GEN-LAST:event_jBtnBackActionPerformed
 
-    private void jtfKeywords1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKeywords1ActionPerformed
+    private void jtfKeywordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKeywordsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfKeywords1ActionPerformed
+    }//GEN-LAST:event_jtfKeywordsActionPerformed
 
-    private void jBtnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSearch1ActionPerformed
+    private void jBtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSearchActionPerformed
 //        resetField();
         String tableName = section;
         String keywords = jtfKeywords.getText();
-
-        String connectionUrl =
-        "jdbc:sqlserver://HASANFADHLILLAH:1433;"
-        + "database=Horizon_Logistic;"
-        + "user=sa;"
-        + "password=sannskuy;"
-        + "encrypt=false;"
-        + "trustServerCertificate=false;"
-        + "loginTimeout=30;";
 
         if (!keywords.isEmpty()) {
             try {
@@ -629,23 +625,23 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_jBtnSearch1ActionPerformed
+    }//GEN-LAST:event_jBtnSearchActionPerformed
 
-    private void jBtnRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRefresh2ActionPerformed
+    private void jBtnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRefreshActionPerformed
         // TODO add your handling code here:
-        String refreshQuery = "SELECT * FROM " + section;
+        String refreshQuery = "SELECT * FROM shipment WHERE email_cust = " + email_cust;
         connectQuery(refreshQuery);
-//        populateTable(jTable, jspTable);
-    }//GEN-LAST:event_jBtnRefresh2ActionPerformed
+        populateTable(jTable, jspTable);
+    }//GEN-LAST:event_jBtnRefreshActionPerformed
 
-    private void jtfField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField27ActionPerformed
+    private void jtfField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfField27ActionPerformed
+    }//GEN-LAST:event_jtfField1ActionPerformed
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
         try {
-            String preparedString = "DELETE FROM " + section + " WHERE " + jlField1.getText() + " = ?";
+            String preparedString = "DELETE FROM shipment WHERE " + jlField1.getText() + " = ?";
             PreparedStatement dropStatement = connection.prepareStatement(preparedString);
             dropStatement.setString(1, jtfField1.getText());
 
@@ -785,48 +781,110 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         }
         return extracted;
     }  
-
+    
+    private void populateTable(JTable table, JScrollPane scrollPane){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        try {
+            
+            int rowCount = resultSet.getRow();
+            int colCount = resultSet.getMetaData().getColumnCount();
+            fieldCount = colCount;
+            // Add columns to the tableModel
+            for(int i = 1; i<= colCount; i++) {
+                tableModel.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+            
+            // Add detail button column
+            tableModel.addColumn("Detail");
+            
+            // Print data
+            while (resultSet.next()){
+                Object[] rowData = new Object[colCount + 1]; // +1 To add column button
+                for (int i = 1; i <= colCount; i++) {
+                    rowData[i - 1] = resultSet.getObject(i);
+                }
+                // Add button placeholder in the "Detail" column
+                rowData[colCount] = "Button";
+                tableModel.addRow(rowData);
+            }
+            
+            table.setModel(tableModel);
+            table.getColumnModel().getColumn(colCount).setCellRenderer(new ButtonRenderer());
+            scrollPane.setViewportView(table);
+            table.setPreferredScrollableViewportSize(table.getPreferredSize());
+            
+            table.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = table.rowAtPoint(evt.getPoint());
+                    
+                    if (col == colCount) {
+                        System.out.println("Button clicked on row " + row);
+                        String[] extracted = extractData(table, row, col);
+                        
+                        for (int i = 0; i < extracted.length; i++){
+                            String fieldLabel = table.getColumnName(i);
+                            String fieldText = extracted[i];
+                            String labelAccessor = "jlField" + Integer.toString(i+1);
+                            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+                            
+                            jlMap.get(labelAccessor).setText(fieldLabel);
+                            jtfMap.get(textFieldAccessor).setText(fieldText);
+                            jtfMap.get(textFieldAccessor).setEditable(false);
+                        }
+                        jBtnDelete.setEnabled(true);
+                    }
+                }
+            });
+            table.setEnabled(false);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DashboardMyHistory().setVisible(false);
-                new LoginForm().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DashboardMyHistory().setVisible(false);
+//                new LoginForm().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnBack;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnRefresh;
-    private javax.swing.JButton jBtnRefresh2;
     private javax.swing.JButton jBtnSearch;
-    private javax.swing.JButton jBtnSearch1;
     private javax.swing.JButton jButtonFilterTop;
     private javax.swing.JButton jButtonSort;
     private javax.swing.JComboBox<String> jComboBoxSort;
@@ -834,28 +892,13 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioAscending;
     private javax.swing.JRadioButton jRadioDescending;
     private javax.swing.JTable jTable;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JButton jbtnBackMenu;
     private javax.swing.JLabel jlField1;
     private javax.swing.JLabel jlField10;
     private javax.swing.JLabel jlField11;
     private javax.swing.JLabel jlField12;
     private javax.swing.JLabel jlField13;
     private javax.swing.JLabel jlField2;
-    private javax.swing.JLabel jlField27;
-    private javax.swing.JLabel jlField28;
-    private javax.swing.JLabel jlField29;
     private javax.swing.JLabel jlField3;
-    private javax.swing.JLabel jlField30;
-    private javax.swing.JLabel jlField31;
-    private javax.swing.JLabel jlField32;
-    private javax.swing.JLabel jlField33;
-    private javax.swing.JLabel jlField34;
-    private javax.swing.JLabel jlField35;
-    private javax.swing.JLabel jlField36;
-    private javax.swing.JLabel jlField37;
-    private javax.swing.JLabel jlField38;
-    private javax.swing.JLabel jlField39;
     private javax.swing.JLabel jlField4;
     private javax.swing.JLabel jlField5;
     private javax.swing.JLabel jlField6;
@@ -863,9 +906,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private javax.swing.JLabel jlField8;
     private javax.swing.JLabel jlField9;
     private javax.swing.JLabel jlFilter;
-    private javax.swing.JLabel jlSectionDetail;
     private javax.swing.JLabel jlSectionDetail2;
-    private javax.swing.JLabel jlSectionTitle;
     private javax.swing.JLabel jlSectionTitle3;
     private javax.swing.JLabel jlSidebarTitle;
     private javax.swing.JLabel jlSidebarTitle1;
@@ -875,34 +916,17 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private javax.swing.JLabel jlSort;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpContent1;
-    private javax.swing.JPanel jpContent2;
-    private javax.swing.JPanel jpDetail;
     private javax.swing.JPanel jpDetail2;
     private javax.swing.JPanel jpSidebar;
-    private javax.swing.JScrollPane jspDetail;
     private javax.swing.JScrollPane jspDetail2;
     private javax.swing.JScrollPane jspTable;
-    private javax.swing.JScrollPane jspTable2;
     private javax.swing.JTextField jtfField1;
     private javax.swing.JTextField jtfField10;
     private javax.swing.JTextField jtfField11;
     private javax.swing.JTextField jtfField12;
     private javax.swing.JTextField jtfField13;
     private javax.swing.JTextField jtfField2;
-    private javax.swing.JTextField jtfField27;
-    private javax.swing.JTextField jtfField28;
-    private javax.swing.JTextField jtfField29;
     private javax.swing.JTextField jtfField3;
-    private javax.swing.JTextField jtfField30;
-    private javax.swing.JTextField jtfField31;
-    private javax.swing.JTextField jtfField32;
-    private javax.swing.JTextField jtfField33;
-    private javax.swing.JTextField jtfField34;
-    private javax.swing.JTextField jtfField35;
-    private javax.swing.JTextField jtfField36;
-    private javax.swing.JTextField jtfField37;
-    private javax.swing.JTextField jtfField38;
-    private javax.swing.JTextField jtfField39;
     private javax.swing.JTextField jtfField4;
     private javax.swing.JTextField jtfField5;
     private javax.swing.JTextField jtfField6;
@@ -910,6 +934,5 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private javax.swing.JTextField jtfField8;
     private javax.swing.JTextField jtfField9;
     private javax.swing.JTextField jtfKeywords;
-    private javax.swing.JTextField jtfKeywords1;
     // End of variables declaration//GEN-END:variables
 }
