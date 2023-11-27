@@ -43,6 +43,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private String section = "shipment";
     private int fieldCount;
     private String email_cust;
+    private String id_customer;
     private String userId;
     
     /**
@@ -50,10 +51,11 @@ public class DashboardMyHistory extends javax.swing.JFrame {
      */
     public DashboardMyHistory(String email) {
         initComponents();
+        initComponentsMap();
         setLocationRelativeTo(null);
-        populateTable(jTable, jspTable);
         this.email_cust = email;
-        connectQuery("SELECT * FROM shipment WHERE email_cust = " + email_cust);
+        obtainCustomerID(email);
+        connectQuery("SELECT * FROM shipment WHERE id_customer = " + this.id_customer);
         populateTable(jTable, jspTable);
     }
     
@@ -123,6 +125,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -464,29 +467,6 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             .addGroup(jpContent1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
-                            .addComponent(jlSectionTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(357, 357, 357))
-                        .addComponent(jspDetail2)
-                        .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpContent1Layout.createSequentialGroup()
-                            .addGap(124, 124, 124)
-                            .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jpContent1Layout.createSequentialGroup()
-                                    .addComponent(jlSort)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jpContent1Layout.createSequentialGroup()
-                                    .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioDescending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(105, 105, 105)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jlFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(176, 176, 176)))
                     .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jpContent1Layout.createSequentialGroup()
                             .addComponent(jtfKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,13 +475,36 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtnRefresh))
                         .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpContent1Layout.createSequentialGroup()
+                            .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonFilterTop, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                                .addComponent(jlSectionTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(357, 357, 357))
+                            .addComponent(jspDetail2)
+                            .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124)
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jlSort)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButtonSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jRadioAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jRadioDescending, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(105, 105, 105)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonFilterTop, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(7, Short.MAX_VALUE))
+                                .addComponent(jlFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(176, 176, 176)))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jpContent1Layout.setVerticalGroup(
             jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,8 +516,8 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                     .addComponent(jBtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSectionTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jspTable, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSort)
                     .addComponent(jlFilter)
@@ -523,17 +526,16 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                     .addComponent(jComboBoxSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTop, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpContent1Layout.createSequentialGroup()
-                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioDescending)
-                            .addComponent(jRadioAscending))
-                        .addGap(18, 18, 18)
-                        .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jspDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtnDelete))
-                .addContainerGap())
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioDescending)
+                    .addComponent(jRadioAscending))
+                .addGap(18, 18, 18)
+                .addComponent(jlSectionDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspDetail2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnDelete)
+                .addGap(166, 166, 166))
         );
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
@@ -667,7 +669,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error occurred while deleting.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtnDeleteActionPerformed
-
+    
     private void jComboBoxTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTopActionPerformed
 
         // TODO: Execute the query and display the results
@@ -782,6 +784,58 @@ public class DashboardMyHistory extends javax.swing.JFrame {
         return extracted;
     }  
     
+    private void obtainCustomerID(String email_cust){
+        try{
+            connection = DriverManager.getConnection(connectionUrl);
+            PreparedStatement obtainQuery = connection.prepareStatement("SELECT id_customer FROM customer WHERE email_cust = ?");
+            obtainQuery.setString(1, email_cust);
+            ResultSet customer_id = obtainQuery.executeQuery();
+            
+            if(customer_id.next()){
+                this.id_customer = customer_id.getString(1);
+                System.out.println(this.id_customer);
+            } else {
+                System.out.println("Customer ID not found.");
+            }
+            
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+    
+    private void initComponentsMap(){
+        jtfMap = new HashMap<>();
+        jlMap = new HashMap<>();
+        
+        jtfMap.put("jtfField1", jtfField1);
+        jtfMap.put("jtfField2", jtfField2);
+        jtfMap.put("jtfField3", jtfField3);
+        jtfMap.put("jtfField4", jtfField4);
+        jtfMap.put("jtfField5", jtfField5);
+        jtfMap.put("jtfField6", jtfField6);
+        jtfMap.put("jtfField7", jtfField7);
+        jtfMap.put("jtfField8", jtfField8);
+        jtfMap.put("jtfField9", jtfField9);
+        jtfMap.put("jtfField10", jtfField10);
+        jtfMap.put("jtfField11", jtfField11);
+        jtfMap.put("jtfField12", jtfField12);
+        jtfMap.put("jtfField13", jtfField13);
+        
+        jlMap.put("jlField1",jlField1);
+        jlMap.put("jlField2",jlField2);
+        jlMap.put("jlField3",jlField3);
+        jlMap.put("jlField4",jlField4);
+        jlMap.put("jlField5",jlField5);
+        jlMap.put("jlField6",jlField6);
+        jlMap.put("jlField7",jlField7);
+        jlMap.put("jlField8",jlField8);
+        jlMap.put("jlField9",jlField9);
+        jlMap.put("jlField10",jlField10);
+        jlMap.put("jlField11",jlField11);
+        jlMap.put("jlField12",jlField12);
+        jlMap.put("jlField13",jlField13);
+    }
+    
     private void populateTable(JTable table, JScrollPane scrollPane){
         
         DefaultTableModel tableModel = new DefaultTableModel();
@@ -823,6 +877,9 @@ public class DashboardMyHistory extends javax.swing.JFrame {
                     if (col == colCount) {
                         System.out.println("Button clicked on row " + row);
                         String[] extracted = extractData(table, row, col);
+                        for (String s : extracted){
+                            System.out.println(s);
+                        }
                         
                         for (int i = 0; i < extracted.length; i++){
                             String fieldLabel = table.getColumnName(i);
@@ -848,37 +905,37 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new DashboardMyHistory().setVisible(false);
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardMyHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DashboardMyHistory("seroja@yahoo.com").setVisible(true);
 //                new LoginForm().setVisible(true);
-//            }
-//        });
-//    }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnBack;

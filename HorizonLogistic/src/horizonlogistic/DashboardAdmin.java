@@ -127,6 +127,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));

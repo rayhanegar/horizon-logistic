@@ -99,6 +99,7 @@ public class DashboardMyProfil extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -408,43 +409,43 @@ public class DashboardMyProfil extends javax.swing.JFrame {
                 .addComponent(jlSidebarTitle7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlSidebarTitle6)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfSocialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfJalan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfKota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfNegara, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnSave)
                     .addComponent(jBtnEdit))
@@ -518,6 +519,40 @@ public class DashboardMyProfil extends javax.swing.JFrame {
 
     private void jBtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveActionPerformed
         // TODO add your handling code here:
+       
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE customer SET first_name = ?, surname = ?, social_number = ?, jalan = ?, kota = ?, zipcode = ?, negara = ?, nomor_telp_cust = ?, email_cust = ? WHERE email_cust = ?");
+            updateStatement.setString(1, jtfFirstName.getText());
+            updateStatement.setString(2, jtfSurname.getText());
+            updateStatement.setInt(3, Integer.parseInt(jtfSocialNumber.getText()));
+            updateStatement.setString(4, jtfJalan.getText());
+            updateStatement.setString(5, jtfKota.getText());
+            updateStatement.setString(6, jtfZipcode.getText());
+            updateStatement.setString(7, jtfNegara.getText());
+            updateStatement.setString(8, jtfNoTelp.getText());
+            updateStatement.setString(9, jtfEmail.getText());
+            updateStatement.setString(10, jtfEmail.getText());
+            
+            updateStatement.executeUpdate();
+            System.out.println("Successfully save edit.");
+            JOptionPane.showMessageDialog(this, "Successfully saved edit.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            jtfFirstName.setEnabled(false);
+            jtfSurname.setEnabled(false);
+            jtfSocialNumber.setEnabled(false);
+            jtfJalan.setEnabled(false);
+            jtfKota.setEnabled(false);
+            jtfZipcode.setEnabled(false);
+            jtfNegara.setEnabled(false);
+            jtfNoTelp.setEnabled(false);
+            jtfEmail.setEnabled(false);
+            
+            jBtnSave.setEnabled(false);
+            jBtnEdit.setEnabled(true);
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         
     }//GEN-LAST:event_jBtnSaveActionPerformed
 
@@ -578,24 +613,24 @@ public class DashboardMyProfil extends javax.swing.JFrame {
     private void populateData(){
         try {
             connection = DriverManager.getConnection(connectionUrl);
-            preparedStatement = connection.prepareStatement("SELECT * FROM shipment WHERE email_cust = ?");
+            preparedStatement = connection.prepareStatement("SELECT * FROM customer WHERE email_cust = ?");
             preparedStatement.setString(1, email_cust);
             resultSet = preparedStatement.executeQuery();
             
-            Object[] rowData = new Object[10]; 
-            for (int i = 1; i <= 10; i++) {
-                rowData[i - 1] = resultSet.getObject(i);
+            if(resultSet.next()){
+                jtfFirstName.setText(resultSet.getString(2));
+                jtfSurname.setText(resultSet.getString(3));
+                jtfSocialNumber.setText(Integer.toString(resultSet.getInt(4)));
+                jtfJalan.setText(resultSet.getString(5));
+                jtfKota.setText(resultSet.getString(6));
+                jtfZipcode.setText(resultSet.getString(7));
+                jtfNegara.setText(resultSet.getString(8));
+                jtfNoTelp.setText(resultSet.getString(9));
+                jtfEmail.setText(resultSet.getString(10));
+            } else {
+                System.out.println("No data found with email " + email_cust);
             }
             
-            jtfFirstName.setText(rowData[1].toString());
-            jtfSurname.setText(rowData[2].toString());
-            jtfSocialNumber.setText(rowData[3].toString());
-            jtfJalan.setText(rowData[4].toString());
-            jtfKota.setText(rowData[5].toString());
-            jtfZipcode.setText(rowData[6].toString());
-            jtfNegara.setText(rowData[7].toString());
-            jtfNoTelp.setText(rowData[8].toString());
-            jtfEmail.setText(rowData[9].toString());
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -633,8 +668,8 @@ public class DashboardMyProfil extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new DashboardMyProfil().setVisible(false);
-//                new LoginForm().setVisible(true);
+//                new DashboardMyProfil("seroja@yahoo.com").setVisible(true);
+////                new LoginForm().setVisible(true);
 //            }
 //        });
 //    }
