@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardMyHistory extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+    private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -183,7 +183,7 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             .addGroup(jpSidebarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSidebarTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jlSidebarTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

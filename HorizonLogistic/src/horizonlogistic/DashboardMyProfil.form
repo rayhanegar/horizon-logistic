@@ -71,7 +71,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlSidebarTitle3" pref="238" max="32767" attributes="0"/>
+                      <Component id="jlSidebarTitle3" max="32767" attributes="0"/>
                       <Component id="jlSidebarTitle" alignment="1" max="32767" attributes="0"/>
                       <Component id="jlSidebarTitle4" alignment="0" max="32767" attributes="0"/>
                       <Component id="jlSidebarTitle1" alignment="0" max="32767" attributes="0"/>

@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardCustomer extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+   private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -673,11 +673,10 @@ public class DashboardCustomer extends javax.swing.JFrame {
         String tableName = section;
         String keywords = jtfKeywords.getText();
 
-        String connectionUrl =
-                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+         String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=sannskuy;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

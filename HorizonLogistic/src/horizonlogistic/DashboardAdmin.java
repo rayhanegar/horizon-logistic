@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package horizonlogistic;
-
+    
 import java.awt.Component;
 import java.sql.*;
 import java.util.Arrays;
@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardAdmin extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+    private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";

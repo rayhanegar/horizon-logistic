@@ -236,11 +236,10 @@ public class LoginForm extends javax.swing.JFrame {
         String email_cust = emailTxt.getText();
         String passwordCust = passwordTxt.getText();
          
-        String connectionUrl =
-                "jdbc:sqlserver://HASHBROWN:1433;"
+        String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -296,11 +295,10 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
         
-        String connectionUrl =
-                "jdbc:sqlserver://HASHBROWN:1433;"
+       String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -318,7 +316,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminLoginButton;
-    private javax.swing.JButton customerLoginButton;
+    public javax.swing.JButton customerLoginButton;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlDesc;

@@ -180,7 +180,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnPaymentActionPerformed
 
     private void jBtnNewShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewShipmentActionPerformed
-        DashboardShipment DS = new DashboardShipment();
+        DashboardShipment DS = new DashboardShipment(this.email_cust);
         DS.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnNewShipmentActionPerformed

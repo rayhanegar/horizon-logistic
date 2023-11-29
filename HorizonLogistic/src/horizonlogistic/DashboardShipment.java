@@ -26,10 +26,10 @@ import javax.swing.ButtonGroup;
  */
 public class DashboardShipment extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+     private String connectionUrl = "jdbc:sqlserver://DESKTOP-OOI580Q:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=123;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -42,14 +42,36 @@ public class DashboardShipment extends javax.swing.JFrame {
     private Map<String, JLabel> jlMap;
     private String section;
     private String email_cust;
+    private String id_customer;
     private int fieldCount;
     
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardShipment() {
+    public DashboardShipment(String email_cust) {
         initComponents();
         setLocationRelativeTo(null);
+        this.email_cust = email_cust;
+        obtainCustomerID(this.email_cust);
+    }
+    
+    private void obtainCustomerID(String email_cust){
+        try{
+            connection = DriverManager.getConnection(connectionUrl);
+            PreparedStatement obtainQuery = connection.prepareStatement("SELECT id_customer FROM customer WHERE email_cust = ?");
+            obtainQuery.setString(1, email_cust);
+            ResultSet customer_id = obtainQuery.executeQuery();
+            
+            if(customer_id.next()){
+                this.id_customer = customer_id.getString(1);
+                System.out.println(this.id_customer);
+            } else {
+                System.out.println("Customer ID not found.");
+            }
+            
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
     }
     
     /**
@@ -89,6 +111,8 @@ public class DashboardShipment extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jlSidebarTitle7 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
@@ -151,7 +175,7 @@ public class DashboardShipment extends javax.swing.JFrame {
             .addGroup(jpSidebarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSidebarTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jlSidebarTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlSidebarTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -285,7 +309,7 @@ public class DashboardShipment extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Ukuran / Dimensi");
+        jLabel13.setText("Jarak");
 
         jlSidebarTitle7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlSidebarTitle7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -293,52 +317,75 @@ public class DashboardShipment extends javax.swing.JFrame {
         jlSidebarTitle7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle7.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jTextField12.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Ukuran / Dimensi");
+
         javax.swing.GroupLayout jpContent1Layout = new javax.swing.GroupLayout(jpContent1);
         jpContent1.setLayout(jpContent1Layout);
         jpContent1Layout.setHorizontalGroup(
             jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContent1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                .addContainerGap(231, Short.MAX_VALUE)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(122, 122, 122))
+                                .addGap(6, 6, 6)
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(108, 108, 108)))
+                        .addGap(25, 25, 25))
                     .addGroup(jpContent1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121))
-                    .addGroup(jpContent1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnMakeShipment1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(134, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
-                .addGap(0, 129, Short.MAX_VALUE)
-                .addComponent(jlSidebarTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                        .addComponent(jlSidebarTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
+                        .addComponent(jbtnMakeShipment1)
+                        .addGap(194, 194, 194))))
             .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContent1Layout.createSequentialGroup()
                     .addContainerGap(126, Short.MAX_VALUE)
@@ -372,15 +419,19 @@ public class DashboardShipment extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnMakeShipment1)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addGap(156, 156, 156))
             .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContent1Layout.createSequentialGroup()
                     .addGap(51, 51, 51)
@@ -396,7 +447,7 @@ public class DashboardShipment extends javax.swing.JFrame {
                 .addGap(291, 291, 291)
                 .addComponent(jbtnMakeShipment)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jpContent1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+            .addComponent(jpContent1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jpContentLayout.setVerticalGroup(
             jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,7 +465,7 @@ public class DashboardShipment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE))
+                .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +505,65 @@ public class DashboardShipment extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jbtnMakeShipment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMakeShipment1ActionPerformed
-        // TODO add your handling code here:
+    String jalan = jTextField6.getText();
+    String kota = jTextField7.getText();
+    String negara = jTextField8.getText();
+    String zipcode = jTextField9.getText();
+    String berat = jTextField10.getText();
+    int berat1 = Integer.parseInt(berat);
+    String dimensi = jTextField11.getText();
+    int dimensi1 = Integer.parseInt(dimensi);
+    String jarak = jTextField12.getText();
+    int jarak1 = Integer.parseInt(jarak);
+    String deskripsi = jTextArea1.getText();
+    
+    
+    // Check for empty fields
+    if (checkEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String insertQuery = "insert into shipment (jalan, kota, negara, zipcode, berat, waktu_masuk, dimensi, deskripsi, jarak, id_delivery_leg, id_customer, id_droppoint)"
+            + "values (?, ?, ?, ?, ?, GETDATE(), ?, ?, ?, 99765, ?, 33765)   ";
+
+    try {
+        Connection connection = DriverManager.getConnection(connectionUrl);
+        PreparedStatement preparedStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS); 
+        preparedStatement.setString(1, jalan);
+        preparedStatement.setString(2, kota);
+        preparedStatement.setString(3, negara);
+        preparedStatement.setString(4, zipcode);
+        preparedStatement.setInt(5, berat1);
+        preparedStatement.setInt(6, dimensi1);
+        preparedStatement.setString(7, deskripsi);
+        preparedStatement.setInt(8, jarak1);
+        preparedStatement.setString(9, this.id_customer);
+
+        preparedStatement.executeUpdate();
+
+//        if (affectedRows > 0) {
+//            JOptionPane.showMessageDialog(this, "Shipment created successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+//
+//            // Retrieve the auto-generated ID (if any)
+//            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+//                if (generatedKeys.next()) {
+//                    String generatedId = Integer.toString(generatedKeys.getInt(1));
+//                    System.out.println("Generated Shipment ID: " + generatedId);
+////                    preparedStatement.setString(1, generatedId);
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error creating shipment.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+
+       
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error creating shipment.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jbtnMakeShipment1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -464,6 +573,10 @@ public class DashboardShipment extends javax.swing.JFrame {
     private void jbtnMakeShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMakeShipmentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnMakeShipmentActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
 
     private boolean checkEmpty() {
         for (int i = 0; i < fieldCount; i++) {
@@ -537,6 +650,7 @@ public class DashboardShipment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -545,6 +659,7 @@ public class DashboardShipment extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
