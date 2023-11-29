@@ -24,12 +24,12 @@ import javax.swing.ButtonGroup;
  *
  * @author RAYHAN EGAR
  */
-public class DashboardAdmin extends javax.swing.JFrame {
+public class DashboardCustomer extends javax.swing.JFrame {
     
-    private String connectionUrl = "jdbc:sqlserver://HASHBROWN:1433;"
+    private String connectionUrl = "jdbc:sqlserver://HASANFADHLILLAH:1433;"
                 + "database=Horizon_Logistic;"
                 + "user=sa;"
-                + "password=basisdata;"
+                + "password=sannskuy;"
                 + "encrypt=false;"
                 + "trustServerCertificate=false;"
                 + "loginTimeout=30;";
@@ -46,7 +46,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardAdmin() {
+    public DashboardCustomer() {
         initComponents();
         initComponentsMap();
         setLocationRelativeTo(null);
@@ -64,15 +64,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jpSidebar = new javax.swing.JPanel();
         jlSidebarTitle = new javax.swing.JLabel();
-        jBtnCustomer = new javax.swing.JButton();
+        jBtnNewShipment = new javax.swing.JButton();
         jBtnShipment = new javax.swing.JButton();
-        jBtnEmployee = new javax.swing.JButton();
         jBtnClearance = new javax.swing.JButton();
         jBtnKendaraan = new javax.swing.JButton();
-        jBtnDeliveryLeg = new javax.swing.JButton();
-        jBtnDroppoint = new javax.swing.JButton();
-        jBtnPayment = new javax.swing.JButton();
-        jBtnOperation = new javax.swing.JButton();
         jBtnLogout = new javax.swing.JButton();
         jpContent = new javax.swing.JPanel();
         jlSectionTitle = new javax.swing.JLabel();
@@ -127,7 +122,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         jpSidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,17 +135,17 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jlSidebarTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jBtnCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnCustomer.setText("Customer");
-        jBtnCustomer.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnCustomer.addActionListener(new java.awt.event.ActionListener() {
+        jBtnNewShipment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBtnNewShipment.setText("New Shipment");
+        jBtnNewShipment.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBtnNewShipment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnCustomerActionPerformed(evt);
+                jBtnNewShipmentActionPerformed(evt);
             }
         });
 
         jBtnShipment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnShipment.setText("Shipment");
+        jBtnShipment.setText("Payment");
         jBtnShipment.setPreferredSize(new java.awt.Dimension(150, 30));
         jBtnShipment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,17 +153,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
-        jBtnEmployee.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnEmployee.setText("Employee");
-        jBtnEmployee.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnEmployeeActionPerformed(evt);
-            }
-        });
-
         jBtnClearance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnClearance.setText("Clearance");
+        jBtnClearance.setText("History");
         jBtnClearance.setPreferredSize(new java.awt.Dimension(150, 30));
         jBtnClearance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,47 +163,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         jBtnKendaraan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnKendaraan.setText("Kendaraan");
+        jBtnKendaraan.setText("Profil Customer");
         jBtnKendaraan.setPreferredSize(new java.awt.Dimension(150, 30));
         jBtnKendaraan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnKendaraanActionPerformed(evt);
-            }
-        });
-
-        jBtnDeliveryLeg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnDeliveryLeg.setText("Delivery Leg");
-        jBtnDeliveryLeg.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnDeliveryLeg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnDeliveryLegActionPerformed(evt);
-            }
-        });
-
-        jBtnDroppoint.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnDroppoint.setText("Drop Point");
-        jBtnDroppoint.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnDroppoint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnDroppointActionPerformed(evt);
-            }
-        });
-
-        jBtnPayment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnPayment.setText("Payment");
-        jBtnPayment.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnPaymentActionPerformed(evt);
-            }
-        });
-
-        jBtnOperation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnOperation.setText("Operation");
-        jBtnOperation.setPreferredSize(new java.awt.Dimension(150, 30));
-        jBtnOperation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnOperationActionPerformed(evt);
             }
         });
 
@@ -245,14 +194,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jpSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnNewShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -262,26 +206,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jlSidebarTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtnNewShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnShipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnClearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnDeliveryLeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnDroppoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(108, 108, 108)
                 .addComponent(jBtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -718,7 +652,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jBtnSave.setEnabled(false);
         jBtnDelete.setEnabled(false);
     }
-    private void jBtnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCustomerActionPerformed
+    private void jBtnNewShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewShipmentActionPerformed
       // TODO add your handling code here:
         resetField();
         section = "customer";
@@ -728,7 +662,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         connectQuery(sqlQuery);
         populateTable(jTable, jspTable);
         setComboBoxModel();
-    }//GEN-LAST:event_jBtnCustomerActionPerformed
+    }//GEN-LAST:event_jBtnNewShipmentActionPerformed
 
     private void jtfKeywordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKeywordsActionPerformed
         // TODO add your handling code here:
@@ -738,6 +672,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         resetField();
         String tableName = section;
         String keywords = jtfKeywords.getText();
+
+        String connectionUrl =
+                "jdbc:sqlserver://HASANFADHLILLAH:1433;"
+                + "database=Horizon_Logistic;"
+                + "user=sa;"
+                + "password=sannskuy;"
+                + "encrypt=false;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
 
         if (!keywords.isEmpty()) {
             try {
@@ -803,18 +746,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setComboBoxModel();
     }//GEN-LAST:event_jBtnShipmentActionPerformed
 
-    private void jBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEmployeeActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "employee";
-        String sqlQuery = "SELECT * FROM employee";
-        jlSectionTitle.setText("Employee");
-        jlSectionDetail.setText("Employee Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnEmployeeActionPerformed
-
     private void jBtnClearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearanceActionPerformed
         // TODO add your handling code here:
         resetField();
@@ -826,54 +757,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         populateTable(jTable, jspTable);
         setComboBoxModel();
     }//GEN-LAST:event_jBtnClearanceActionPerformed
-
-    private void jBtnDeliveryLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeliveryLegActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "delivery_leg";
-        String sqlQuery = "SELECT * FROM delivery_leg";
-        jlSectionTitle.setText("Delivery Leg");
-        jlSectionDetail.setText("Deliv. Leg Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnDeliveryLegActionPerformed
-
-    private void jBtnDroppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDroppointActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "droppoint";
-        String sqlQuery = "SELECT * FROM droppoint";
-        jlSectionTitle.setText("Drop point");
-        jlSectionDetail.setText("Drop point Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnDroppointActionPerformed
-
-    private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "payment";
-        String sqlQuery = "SELECT * FROM payment";
-        jlSectionTitle.setText("Payment");
-        jlSectionDetail.setText("Payment Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnPaymentActionPerformed
-
-    private void jBtnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOperationActionPerformed
-        // TODO add your handling code here:
-        resetField();
-        section = "operates";
-        String sqlQuery = "SELECT * FROM operates";
-        jlSectionTitle.setText("Operation");
-        jlSectionDetail.setText("Operation Detail");
-        connectQuery(sqlQuery);
-        populateTable(jTable, jspTable);
-        setComboBoxModel();
-    }//GEN-LAST:event_jBtnOperationActionPerformed
 
     private void jBtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogoutActionPerformed
         int responseLogout = JOptionPane.showConfirmDialog(this, "Do you want to log out?", "Confirm Log Out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -1465,19 +1348,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardAdmin().setVisible(false);
+                new DashboardCustomer().setVisible(false);
                 new LoginForm().setVisible(true);
             }
         });
@@ -1486,15 +1369,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdd;
     private javax.swing.JButton jBtnClearance;
-    private javax.swing.JButton jBtnCustomer;
     private javax.swing.JButton jBtnDelete;
-    private javax.swing.JButton jBtnDeliveryLeg;
-    private javax.swing.JButton jBtnDroppoint;
-    private javax.swing.JButton jBtnEmployee;
     private javax.swing.JButton jBtnKendaraan;
     private javax.swing.JButton jBtnLogout;
-    private javax.swing.JButton jBtnOperation;
-    private javax.swing.JButton jBtnPayment;
+    private javax.swing.JButton jBtnNewShipment;
     private javax.swing.JButton jBtnRefresh;
     private javax.swing.JButton jBtnRegister;
     private javax.swing.JButton jBtnSave;
