@@ -42,14 +42,24 @@ public class DashboardPayment extends javax.swing.JFrame {
     private Map<String, JLabel> jlMap;
     private String section;
     private String email_cust;
+    private String id_customer;
     private int fieldCount;
     
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardPayment() {
+    public DashboardPayment(String email_cust) {
         initComponents();
+        initComponentsMap();
         setLocationRelativeTo(null);
+        this.email_cust = email_cust;
+        obtainCustomerID(this.email_cust);
+        connectQuery("SELECT P.id_payment, P.id_shipment, "
+                + "(P.insurance_amount + P.fee_berat*S.berat + P.fee_jarak*S.jarak) AS total_biaya "
+                + "FROM payment P "
+                + "JOIN shipment S on P.id_shipment=S.id_shipment "
+                + "WHERE S.id_customer = " + this.id_customer);
+        populateTable(jTable, jspTable);
     }
     
     /**
@@ -103,7 +113,7 @@ public class DashboardPayment extends javax.swing.JFrame {
         jlField11 = new javax.swing.JLabel();
         jlField12 = new javax.swing.JLabel();
         jlField13 = new javax.swing.JLabel();
-        jBtnRegister = new javax.swing.JButton();
+        jBtnPay = new javax.swing.JButton();
         jlSectionTitle1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -373,12 +383,12 @@ public class DashboardPayment extends javax.swing.JFrame {
 
         jspDetail.setViewportView(jpDetail);
 
-        jBtnRegister.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jBtnRegister.setText("Pay Now");
-        jBtnRegister.setEnabled(false);
-        jBtnRegister.addActionListener(new java.awt.event.ActionListener() {
+        jBtnPay.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jBtnPay.setText("Pay Now");
+        jBtnPay.setEnabled(false);
+        jBtnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnRegisterActionPerformed(evt);
+                jBtnPayActionPerformed(evt);
             }
         });
 
@@ -405,7 +415,7 @@ public class DashboardPayment extends javax.swing.JFrame {
                                     .addComponent(jspDetail)
                                     .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBtnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jspTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -427,7 +437,7 @@ public class DashboardPayment extends javax.swing.JFrame {
                         .addComponent(jlSectionDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jspDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtnRegister))
+                    .addComponent(jBtnPay))
                 .addGap(112, 112, 112))
         );
 
@@ -473,135 +483,9 @@ public class DashboardPayment extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbtnBackMenuActionPerformed
 
-    private void jBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRegisterActionPerformed
+    private void jBtnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPayActionPerformed
         // TODO add your handling code here:
-        try {
-            if (checkEmpty()) {
-                JOptionPane.showMessageDialog(this,
-                    "Please fill every active field.",
-                    "Empty Field!",
-                    JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            String preparedString = "INSERT INTO " + section + " VALUES (";
-            for (int i = 0; i < fieldCount; i++) {
-
-                if (i == fieldCount-1){
-                    preparedString += "?)";
-                }
-                else {
-                    preparedString += "?, ";
-                }
-            }
-
-            PreparedStatement insertStatement = connection.prepareStatement(preparedString);
-            switch (section) {
-                case "customer":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setInt(4, Integer.parseInt(jtfField4.getText()));
-                insertStatement.setString(5, jtfField5.getText());
-                insertStatement.setString(6, jtfField6.getText());
-                insertStatement.setString(7, jtfField7.getText());
-                insertStatement.setString(8, jtfField8.getText());
-                insertStatement.setString(9, jtfField9.getText());
-                insertStatement.setString(10, jtfField10.getText());
-                break;
-                case "shipment":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                insertStatement.setString(5, jtfField5.getText());
-                insertStatement.setFloat(6, Float.parseFloat(jtfField6.getText()));
-                insertStatement.setString(7, jtfField7.getText());
-                insertStatement.setFloat(8, Float.parseFloat(jtfField8.getText()));
-                insertStatement.setString(9, jtfField9.getText());
-                insertStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
-                insertStatement.setString(11, jtfField11.getText());
-                insertStatement.setString(12, jtfField12.getText());
-                insertStatement.setString(13, jtfField13.getText());
-                break;
-                case "employee":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                insertStatement.setString(5, jtfField5.getText());
-                insertStatement.setString(6, jtfField6.getText());
-                insertStatement.setString(7, jtfField7.getText());
-                insertStatement.setString(8, jtfField8.getText());
-                insertStatement.setString(9, jtfField9.getText());
-                insertStatement.setFloat(10, Float.parseFloat(jtfField10.getText()));
-                insertStatement.setString(11, jtfField11.getText());
-                insertStatement.setString(12, jtfField12.getText());
-                break;
-                case "clearance":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                break;
-                case "kendaraan":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                insertStatement.setString(5, jtfField5.getText());
-                insertStatement.setInt(6, Integer.parseInt(jtfField6.getText()));
-                break;
-                case "delivery_leg":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                insertStatement.setString(5, jtfField1.getText());
-                break;
-                case "droppoint":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                insertStatement.setString(3, jtfField3.getText());
-                insertStatement.setString(4, jtfField4.getText());
-                insertStatement.setString(5, jtfField5.getText());
-                insertStatement.setString(6, jtfField6.getText());
-                insertStatement.setString(7, jtfField7.getText());
-                break;
-                case "payment":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setFloat(2, Float.parseFloat(jtfField2.getText()));
-                insertStatement.setFloat(3, Float.parseFloat(jtfField3.getText()));
-                insertStatement.setFloat(4, Float.parseFloat(jtfField4.getText()));
-                insertStatement.setString(5, jtfField5.getText());
-                break;
-                case "operates":
-                insertStatement.setString(1, jtfField1.getText());
-                insertStatement.setString(2, jtfField2.getText());
-                break;
-            }
-
-            int confirmation = JOptionPane.showConfirmDialog(
-                this,
-                "Are you sure you want to register new entry?",
-                "Register Confirmation",
-                JOptionPane.YES_NO_OPTION
-            );
-
-            if(confirmation == JOptionPane.YES_OPTION){
-                insertStatement.execute();
-                System.out.println("Successfully register new entry to "+ section + " ID no: " + jtfField1.getText());
-                JOptionPane.showMessageDialog(this, "Successfully registered.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                //                resetField();
-            } else {
-                System.out.println("Register aborted.");
-                JOptionPane.showMessageDialog(this, "Register aborted.", "Cancel Register", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } catch (SQLException e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error occurred while registering.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jBtnRegisterActionPerformed
+    }//GEN-LAST:event_jBtnPayActionPerformed
 
     private void jtfField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField1ActionPerformed
         // TODO add your handling code here:
@@ -609,9 +493,9 @@ public class DashboardPayment extends javax.swing.JFrame {
 
     private void jBtnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRefreshActionPerformed
         // TODO add your handling code here:
-        String refreshQuery = "SELECT * FROM " + section;
+        String refreshQuery = "SELECT * FROM payment WHERE id_customer = " + email_cust;
         connectQuery(refreshQuery);
-        //        populateTable(jTable, jspTable);
+        populateTable(jTable, jspTable);
     }//GEN-LAST:event_jBtnRefreshActionPerformed
 
     private boolean checkEmpty() {
@@ -647,6 +531,123 @@ public class DashboardPayment extends javax.swing.JFrame {
         return extracted;
     }  
 
+    private void obtainCustomerID(String email_cust){
+        try{
+            connection = DriverManager.getConnection(connectionUrl);
+            PreparedStatement obtainQuery = connection.prepareStatement("SELECT id_customer FROM customer WHERE email_cust = ?");
+            obtainQuery.setString(1, email_cust);
+            ResultSet customer_id = obtainQuery.executeQuery();
+            
+            if(customer_id.next()){
+                this.id_customer = customer_id.getString(1);
+                System.out.println(this.id_customer);
+            } else {
+                System.out.println("Customer ID not found.");
+            }
+            
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+    
+    private void initComponentsMap(){
+        jtfMap = new HashMap<>();
+        jlMap = new HashMap<>();
+        
+        jtfMap.put("jtfField1", jtfField1);
+        jtfMap.put("jtfField2", jtfField2);
+        jtfMap.put("jtfField3", jtfField3);
+        jtfMap.put("jtfField4", jtfField4);
+        jtfMap.put("jtfField5", jtfField5);
+        jtfMap.put("jtfField6", jtfField6);
+        jtfMap.put("jtfField7", jtfField7);
+        jtfMap.put("jtfField8", jtfField8);
+        jtfMap.put("jtfField9", jtfField9);
+        jtfMap.put("jtfField10", jtfField10);
+        jtfMap.put("jtfField11", jtfField11);
+        jtfMap.put("jtfField12", jtfField12);
+        jtfMap.put("jtfField13", jtfField13);
+        
+        jlMap.put("jlField1",jlField1);
+        jlMap.put("jlField2",jlField2);
+        jlMap.put("jlField3",jlField3);
+        jlMap.put("jlField4",jlField4);
+        jlMap.put("jlField5",jlField5);
+        jlMap.put("jlField6",jlField6);
+        jlMap.put("jlField7",jlField7);
+        jlMap.put("jlField8",jlField8);
+        jlMap.put("jlField9",jlField9);
+        jlMap.put("jlField10",jlField10);
+        jlMap.put("jlField11",jlField11);
+        jlMap.put("jlField12",jlField12);
+        jlMap.put("jlField13",jlField13);
+    }
+    
+    private void populateTable(JTable table, JScrollPane scrollPane){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        try {
+            
+            int rowCount = resultSet.getRow();
+            int colCount = resultSet.getMetaData().getColumnCount();
+            fieldCount = colCount;
+            // Add columns to the tableModel
+            for(int i = 1; i<= colCount; i++) {
+                tableModel.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+            
+            // Add detail button column
+            tableModel.addColumn("Detail");
+            
+            // Print data
+            while (resultSet.next()){
+                Object[] rowData = new Object[colCount + 1]; // +1 To add column button
+                for (int i = 1; i <= colCount; i++) {
+                    rowData[i - 1] = resultSet.getObject(i);
+                }
+                // Add button placeholder in the "Detail" column
+                rowData[colCount] = "Button";
+                tableModel.addRow(rowData);
+            }
+            
+            table.setModel(tableModel);
+            table.getColumnModel().getColumn(colCount).setCellRenderer(new ButtonRenderer());
+            scrollPane.setViewportView(table);
+            table.setPreferredScrollableViewportSize(table.getPreferredSize());
+            
+            table.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = table.rowAtPoint(evt.getPoint());
+                    
+                    if (col == colCount) {
+                        System.out.println("Button clicked on row " + row);
+                        String[] extracted = extractData(table, row, col);
+                        for (String s : extracted){
+                            System.out.println(s);
+                        }
+                        
+                        for (int i = 0; i < extracted.length; i++){
+                            String fieldLabel = table.getColumnName(i);
+                            String fieldText = extracted[i];
+                            String labelAccessor = "jlField" + Integer.toString(i+1);
+                            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
+                            
+                            jlMap.get(labelAccessor).setText(fieldLabel);
+                            jtfMap.get(textFieldAccessor).setText(fieldText);
+                            jtfMap.get(textFieldAccessor).setEditable(false);
+                        }
+                        jBtnPay.setEnabled(true);
+                    }
+                }
+            });
+            table.setEnabled(false);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -674,17 +675,17 @@ public class DashboardPayment extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DashboardPayment().setVisible(false);
-                new LoginForm().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DashboardPayment(email_cust).setVisible(false);
+//                new LoginForm().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnPay;
     private javax.swing.JButton jBtnRefresh;
-    private javax.swing.JButton jBtnRegister;
     private javax.swing.JTable jTable;
     private javax.swing.JButton jbtnBackMenu;
     private javax.swing.JLabel jlField1;

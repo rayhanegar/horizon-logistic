@@ -643,6 +643,10 @@ public class DashboardMyHistory extends javax.swing.JFrame {
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
         try {
+            
+            String prereqDelete = "DELETE FROM payment WHERE id_shipment = " + jtfField1.getText();
+            PreparedStatement prereqPrepared = connection.prepareStatement(prereqDelete);
+            
             String preparedString = "DELETE FROM shipment WHERE " + jlField1.getText() + " = ?";
             PreparedStatement dropStatement = connection.prepareStatement(preparedString);
             dropStatement.setString(1, jtfField1.getText());
@@ -655,7 +659,9 @@ public class DashboardMyHistory extends javax.swing.JFrame {
             );
 
             if(confirmation == JOptionPane.YES_OPTION){
+                prereqPrepared.execute();
                 dropStatement.execute();
+                System.out.println("Delete payment where for shipment ID = " + jtfField1.getText());
                 System.out.println("Successfully deleted from "+ section + " ID no: " + jtfField1.getText());
                 JOptionPane.showMessageDialog(this, "Successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
 //                resetField();

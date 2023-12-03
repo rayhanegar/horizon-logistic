@@ -174,13 +174,13 @@ public class CustomerMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPaymentActionPerformed
-        DashboardPayment DP = new DashboardPayment();
+        DashboardPayment DP = new DashboardPayment(email_cust);
         DP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnPaymentActionPerformed
 
     private void jBtnNewShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewShipmentActionPerformed
-        DashboardShipment DS = new DashboardShipment();
+        DashboardShipment DS = new DashboardShipment(email_cust);
         DS.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnNewShipmentActionPerformed

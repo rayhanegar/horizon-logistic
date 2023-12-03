@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ButtonGroup;
+import java.util.Calendar;
 
 
 /**
@@ -42,14 +43,17 @@ public class DashboardShipment extends javax.swing.JFrame {
     private Map<String, JLabel> jlMap;
     private String section;
     private String email_cust;
+    private String id_customer;
     private int fieldCount;
     
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardShipment() {
+    public DashboardShipment(String email_cust) {
         initComponents();
         setLocationRelativeTo(null);
+        this.email_cust = email_cust;
+        obtainCustomerID(this.email_cust);
     }
     
     /**
@@ -71,24 +75,26 @@ public class DashboardShipment extends javax.swing.JFrame {
         jpContent = new javax.swing.JPanel();
         jbtnMakeShipment = new javax.swing.JButton();
         jpContent1 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
+        jtfJalan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jlSidebarTitle6 = new javax.swing.JLabel();
         jbtnMakeShipment1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jtfKota = new javax.swing.JTextField();
+        jtfNegara = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jtfZipcode = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jtfBerat = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        jtfDimensi = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaDeskripsi = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jlSidebarTitle7 = new javax.swing.JLabel();
+        jtfJarak = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horizon Logistic");
@@ -198,10 +204,10 @@ public class DashboardShipment extends javax.swing.JFrame {
         jpContent1.setBackground(new java.awt.Color(255, 255, 255));
         jpContent1.setPreferredSize(new java.awt.Dimension(600, 100));
 
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jtfJalan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfJalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jtfJalanActionPerformed(evt);
             }
         });
 
@@ -228,17 +234,17 @@ public class DashboardShipment extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Kota");
 
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jtfKota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfKota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jtfKotaActionPerformed(evt);
             }
         });
 
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jtfNegara.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfNegara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jtfNegaraActionPerformed(evt);
             }
         });
 
@@ -246,10 +252,10 @@ public class DashboardShipment extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Negara");
 
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jtfZipcode.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfZipcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jtfZipcodeActionPerformed(evt);
             }
         });
 
@@ -261,10 +267,10 @@ public class DashboardShipment extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Berat");
 
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        jtfBerat.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfBerat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                jtfBeratActionPerformed(evt);
             }
         });
 
@@ -272,16 +278,16 @@ public class DashboardShipment extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Deskripsi");
 
-        jTextField11.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        jtfDimensi.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfDimensi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                jtfDimensiActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaDeskripsi.setColumns(20);
+        jtaDeskripsi.setRows(5);
+        jScrollPane1.setViewportView(jtaDeskripsi);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -293,6 +299,17 @@ public class DashboardShipment extends javax.swing.JFrame {
         jlSidebarTitle7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlSidebarTitle7.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jtfJarak.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jtfJarak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfJarakActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Jarak");
+
         javax.swing.GroupLayout jpContent1Layout = new javax.swing.GroupLayout(jpContent1);
         jpContent1.setLayout(jpContent1Layout);
         jpContent1Layout.setHorizontalGroup(
@@ -303,30 +320,37 @@ public class DashboardShipment extends javax.swing.JFrame {
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContent1Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfDimensi, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpContent1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtfJalan, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtfNegara, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtfKota, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpContent1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtfBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jpContent1Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(122, 122, 122))
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(121, 121, 121))
                     .addGroup(jpContent1Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,35 +376,39 @@ public class DashboardShipment extends javax.swing.JFrame {
                 .addComponent(jlSidebarTitle6)
                 .addGap(18, 18, 18)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfJalan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfKota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfNegara, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDimensi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnMakeShipment1)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(328, Short.MAX_VALUE))
             .addGroup(jpContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContent1Layout.createSequentialGroup()
                     .addGap(51, 51, 51)
@@ -433,47 +461,93 @@ public class DashboardShipment extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbtnBackMenuActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void jtfDimensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDimensiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_jtfDimensiActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jtfBeratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBeratActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jtfBeratActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jtfZipcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfZipcodeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jtfZipcodeActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jtfNegaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNegaraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jtfNegaraActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jtfKotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfKotaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jtfKotaActionPerformed
 
     private void jbtnMakeShipment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMakeShipment1ActionPerformed
         // TODO add your handling code here:
+        if(!checkEmpty()){
+            try {
+                connection = DriverManager.getConnection(connectionUrl);
+                String preparedString = "INSERT INTO shipment(id_shipment, jalan, kota, negara, zipcode, berat, waktu_masuk, dimensi, deskripsi, jarak, id_delivery_leg, id_customer, id_droppoint)"
+                        + " VALUES(990120, ?, ?, ?, ?, ?, GETDATE(), ?, ?, ?, 99765, ?, 33765)";
+                PreparedStatement prepareStatement = connection.prepareStatement(preparedString);
+                prepareStatement.setString(1, jtfJalan.getText());
+                prepareStatement.setString(2, jtfKota.getText());
+                prepareStatement.setString(3, jtfNegara.getText());
+                prepareStatement.setString(4, jtfZipcode.getText());
+                prepareStatement.setFloat(5, Float.parseFloat(jtfBerat.getText()));
+//                java.util.Date currentDate = new java.util.Date();
+//                java.sql.Timestamp timestamp = new java.sql.Timestamp(currentDate.getTime());
+//                prepareStatement.setTimestamp(6, timestamp);
+                prepareStatement.setFloat(6, Float.parseFloat(jtfDimensi.getText()));
+                prepareStatement.setString(7, jtaDeskripsi.getText());
+                prepareStatement.setFloat(8, Float.parseFloat(jtfJarak.getText()));
+                prepareStatement.setString(9, this.id_customer);
+                prepareStatement.executeUpdate();
+                
+                String paymentString = "INSERT INTO payment(id_payment, insurance_amount, fee_berat, fee_jarak, id_shipment)"
+                        + " VALUES(89775, 100000, 200000, 200000, 990120)";
+                Statement paymentStatement = connection.createStatement();
+                paymentStatement.executeUpdate(paymentString);
+                
+                System.out.println("Successfully create a new shipment and payment.");
+                JOptionPane.showMessageDialog(this, "Successfully create a new shipment and payment.", "New Shipment Made!", JOptionPane.INFORMATION_MESSAGE);
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jbtnMakeShipment1ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jtfJalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfJalanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jtfJalanActionPerformed
 
     private void jbtnMakeShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMakeShipmentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnMakeShipmentActionPerformed
 
-    private boolean checkEmpty() {
-        for (int i = 0; i < fieldCount; i++) {
-            String textFieldAccessor = "jtfField" + Integer.toString(i+1);
-            if (jtfMap.get(textFieldAccessor).getText().trim().isEmpty()) {
-                return true;
+    private void jtfJarakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfJarakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfJarakActionPerformed
+
+    private void obtainCustomerID(String email_cust){
+        try{
+            connection = DriverManager.getConnection(connectionUrl);
+            PreparedStatement obtainQuery = connection.prepareStatement("SELECT id_customer FROM customer WHERE email_cust = ?");
+            obtainQuery.setString(1, email_cust);
+            ResultSet customer_id = obtainQuery.executeQuery();
+            
+            if(customer_id.next()){
+                this.id_customer = customer_id.getString(1);
+                System.out.println(this.id_customer);
+            } else {
+                System.out.println("Customer ID not found.");
             }
+            
+        } catch (SQLException e ){
+            e.printStackTrace();
         }
-        return false;
     }
+    
     private void connectQuery(String sqlQuery){
         try {
             connection = DriverManager.getConnection(connectionUrl);
@@ -498,6 +572,21 @@ public class DashboardShipment extends javax.swing.JFrame {
         return extracted;
     }  
 
+    private boolean checkEmpty(){
+        if (jtfJalan.getText().trim().isEmpty() || 
+                jtfBerat.getText().trim().isEmpty() ||
+                jtfDimensi.getText().trim().isEmpty() ||
+                jtfKota.getText().trim().isEmpty() ||
+                jtfNegara.getText().trim().isEmpty()  ||
+                jtfZipcode.getText().trim().isEmpty() ||
+                jtfJarak.getText().trim().isEmpty() ||
+                jtaDeskripsi.getText().trim().isEmpty()) 
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -537,18 +626,12 @@ public class DashboardShipment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton jbtnBackMenu;
     private javax.swing.JButton jbtnMakeShipment;
     private javax.swing.JButton jbtnMakeShipment1;
@@ -562,5 +645,13 @@ public class DashboardShipment extends javax.swing.JFrame {
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpContent1;
     private javax.swing.JPanel jpSidebar;
+    private javax.swing.JTextArea jtaDeskripsi;
+    private javax.swing.JTextField jtfBerat;
+    private javax.swing.JTextField jtfDimensi;
+    private javax.swing.JTextField jtfJalan;
+    private javax.swing.JTextField jtfJarak;
+    private javax.swing.JTextField jtfKota;
+    private javax.swing.JTextField jtfNegara;
+    private javax.swing.JTextField jtfZipcode;
     // End of variables declaration//GEN-END:variables
 }
