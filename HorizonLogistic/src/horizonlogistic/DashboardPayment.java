@@ -485,6 +485,8 @@ public class DashboardPayment extends javax.swing.JFrame {
 
     private void jBtnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPayActionPerformed
         // TODO add your handling code here:
+        System.out.println("Successfully paid for a payment.");
+        JOptionPane.showMessageDialog(this, "Successfully paid a payment!", "New Payment!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jBtnPayActionPerformed
 
     private void jtfField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfField1ActionPerformed
